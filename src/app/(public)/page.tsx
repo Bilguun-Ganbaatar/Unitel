@@ -6,7 +6,7 @@ import Footer from "@/src/components/footer";
 import Header from "@/src/components/header";
 import Introduction from "@/src/components/introduction";
 import Work_w_us from "@/src/components/work_w_us";
-import { AppShell, Button, Container, Stack } from "@mantine/core";
+import { AppShell, Burger, Button, Container, Flex, Stack } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 
 const navItems = [
@@ -39,32 +39,27 @@ export default function HomePage() {
         collapsed: { desktop: true, mobile: !opened },
       }}
     >
-      <Header opened={opened} toggle={toggle} />
-
-      <AppShell.Navbar
-        py={20}
-        px={20}
-        style={{
-          backgroundColor: "var(--bg-header)",
-          borderRight: "1px solid var(--accent)",
-        }}
-      >
-        <Stack gap={8}>
-          {navItems.map((item) => (
-            <Button
-              key={item.label}
-              variant="subtle"
-              fullWidth
-              style={{ color: "var(--text-primary)" }}
-              onClick={() => scrollTo(item.id)}
-            >
-              {item.label}
-            </Button>
-          ))}
-          <Button style={{ backgroundColor: "var(--accent)", color: "white" }}>Холбогдох</Button>
-        </Stack>
+      <Header opened={opened} toggle={toggle} scrollTo={scrollTo} />{" "}
+      <AppShell.Navbar py={20} px={20}>
+        <Flex justify={"space-between"}>
+          <Stack gap={8} align="flex-start">
+            {navItems.map((item) => (
+              <Button
+                justify="flex-start"
+                key={item.label}
+                variant="subtle"
+                fullWidth
+                style={{ color: "var(--text-primary)" }}
+                onClick={() => scrollTo(item.id)}
+              >
+                {item.label}
+              </Button>
+            ))}
+            <Button>Холбогдох</Button>
+          </Stack>
+          <Burger opened={opened} onClick={toggle} />
+        </Flex>
       </AppShell.Navbar>
-
       <AppShell.Main>
         <Container
           strategy="grid"
