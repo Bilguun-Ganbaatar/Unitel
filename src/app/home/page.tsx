@@ -1,162 +1,92 @@
 "use client";
 
-import { Carousel } from "@mantine/carousel";
-import Header from "@/src/components/header";
-import "@mantine/carousel/styles.css";
-import Link from "next/link";
-import { Image, Button, getSize } from "@mantine/core";
-import { ActionIcon, Stack } from "@mantine/core";
-import { IconBrandFacebook, IconBrandTwitter, IconBrandYoutube } from "@tabler/icons-react";
-import { Text } from "@mantine/core";
-import { Group } from "@mantine/core";
+import About_us from "@/src/components/aboutus";
+import Advantage from "@/src/components/advantage";
 import Footer from "@/src/components/footer";
-import { Grid } from "@mantine/core";
+import Header from "@/src/components/header";
+import Introduction from "@/src/components/introduction";
+import Work_w_us from "@/src/components/work_w_us";
+import { AppShell, Button, Container, Stack } from "@mantine/core";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+
+const navItems = [
+  { label: "Танилцуулга", id: "taniltsuulga" },
+  { label: "Давуу тал", id: "davuu-tal" },
+  { label: "Хамтрах", id: "hamtrah" },
+  { label: "Бидний тухай", id: "bidnii-tuhai" },
+];
 
 export default function HomePage() {
-  const actions = [
-    { title: "DATA", subtitle: "Багц авах" },
-    { title: "Нэгж", subtitle: "Авах" },
-    { title: "Төлбөр", subtitle: "Шалгах, Төлөх" },
-    { title: "Шинэ дугаар", subtitle: "Захиалах, Авах" },
-    { title: "Сим карт", subtitle: "Сэргээх" },
-    { title: "Роуминг", subtitle: "Нээх, Хаах" },
-  ];
+  const [opened, { toggle, close }] = useDisclosure();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+    close();
+  };
+
   return (
-    <>
-      <Header />
-      <Stack
-        gap="sm"
+    <AppShell
+      layout="alt"
+      header={{ height: 70 }}
+      navbar={{
+        width: 260,
+        breakpoint: "md",
+        collapsed: { desktop: true, mobile: !opened },
+      }}
+    >
+      <Header opened={opened} toggle={toggle} />
+
+      <AppShell.Navbar
+        py={20}
+        px={20}
         style={{
-          position: "fixed",
-          right: 20,
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 9999,
+          backgroundColor: "var(--bg-header)",
+          borderRight: "1px solid var(--accent)",
         }}
       >
-        <ActionIcon
-          component="a"
-          href="https://www.facebook.com/unitelofficial"
-          target="_blank"
-          size="xl"
-          radius="xl"
-          variant="filled"
-          color="blue"
-        >
-          <IconBrandFacebook size={18} />
-        </ActionIcon>
-
-        <ActionIcon
-          component="a"
-          href="https://x.com/unitelofficial"
-          target="_blank"
-          size="xl"
-          radius="xl"
-          variant="filled"
-        >
-          <IconBrandTwitter size={18} />
-        </ActionIcon>
-
-        <ActionIcon
-          component="a"
-          href="https://www.youtube.com/user/unitelofficial"
-          target="_blank"
-          size="xl"
-          radius="xl"
-          variant="filled"
-          color="red"
-        >
-          <IconBrandYoutube size={18} />
-        </ActionIcon>
-      </Stack>
-      <Carousel
-        withIndicators
-        height={390}
-        style={{
-          width: "100vw",
-          marginLeft: "calc(50% - 50vw)",
-        }}
-      >
-        <Carousel.Slide>
-          <div style={{ position: "relative" }}>
-            <Image src="/immerce.jpg" alt="Banner" h={390} w="100%" fit="cover" />
-
-            <Link href="/promotion">
-              <Button
-                color="lime"
-                style={{
-                  position: "absolute",
-                  left: 1100,
-                  bottom: 50,
-                  zIndex: 10,
-                }}
-              >
-                Дэлгэрэнгүй
-              </Button>
-            </Link>
-          </div>
-        </Carousel.Slide>
-
-        <Carousel.Slide>
-          <div style={{ position: "relative" }}>
-            <Image src="/immerce.jpg" alt="Banner" h={390} w="100%" fit="cover" />
-
-            <Link href="/promotion">
-              <Button
-                color="lime"
-                style={{
-                  position: "absolute",
-                  left: 1100,
-                  bottom: 50,
-                  zIndex: 10,
-                }}
-              >
-                Дэлгэрэнгүй
-              </Button>
-            </Link>
-          </div>
-        </Carousel.Slide>
-
-        <Carousel.Slide>
-          <div style={{ position: "relative" }}>
-            <Image src="/immerce.jpg" alt="Banner" h={390} w="100%" fit="cover" />
-
-            <Link href="/promotion">
-              <Button
-                color="lime"
-                style={{
-                  position: "absolute",
-                  left: 1100,
-                  bottom: 50,
-                  zIndex: 10,
-                }}
-              >
-                Дэлгэрэнгүй
-              </Button>
-            </Link>
-          </div>
-        </Carousel.Slide>
-      </Carousel>
-
-      <Grid py="xl">
-        {actions.map((item) => (
-          <Grid.Col key={item.title} span={{ base: 6, sm: 4, md: 3, lg: 2 }}>
-            <Button href="/data" component="a" variant="subtle" h="auto" w="100%">
-              <Stack gap={2} align="center">
-                <Image src="/telephone.png" w={60} h={60} />
-
-                <Text fw={700}>{item.title}</Text>
-
-                <Text c="dimmed" size="sm">
-                  {item.subtitle}
-                </Text>
-              </Stack>
+        <Stack gap={8}>
+          {navItems.map((item) => (
+            <Button
+              key={item.label}
+              variant="subtle"
+              fullWidth
+              style={{ color: "var(--text-primary)" }}
+              onClick={() => scrollTo(item.id)}
+            >
+              {item.label}
             </Button>
-          </Grid.Col>
-        ))}
-      </Grid>
+          ))}
+          <Button style={{ backgroundColor: "var(--accent)", color: "white" }}>Холбогдох</Button>
+        </Stack>
+      </AppShell.Navbar>
 
-      <Footer />
-    </>
+      <AppShell.Main>
+        <Container
+          strategy="grid"
+          size={1200}
+          p={0}
+          style={{ backgroundColor: "var(--bg-primary)" }}
+        >
+          <div id="taniltsuulga">
+            <Introduction />
+          </div>
+          <div id="davuu-tal">
+            <Advantage />
+          </div>
+          <div id="hamtrah">
+            <Work_w_us />
+          </div>
+          <div id="bidnii-tuhai">
+            <About_us />
+          </div>
+        </Container>
+        <Footer />
+      </AppShell.Main>
+    </AppShell>
   );
 }

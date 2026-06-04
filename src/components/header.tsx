@@ -1,81 +1,82 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { Group, Button, Menu, Burger, Drawer, Stack } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { AppShell, Burger, Button, Group, Image } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
+import ThemeToggle from "./ThemeToggle";
 
-export default function Header() {
-  const [opened, { toggle, close }] = useDisclosure(false);
+const navItems = [
+  { label: "Танилцуулга", id: "taniltsuulga" },
+  { label: "Давуу тал", id: "davuu-tal" },
+  { label: "Хамтрах", id: "hamtrah" },
+  { label: "Бидний тухай", id: "bidnii-tuhai" },
+];
+
+interface HeaderProps {
+  opened: boolean;
+  toggle: () => void;
+}
+
+export default function Header({ opened, toggle }: HeaderProps) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+    if (opened) toggle();
+  };
 
   return (
-    <>
-      <Group justify="space-between" p="md">
-        <Link
-          href="/home"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            fontSize: "32px",
-            fontWeight: "bold",
-          }}
-        >
-          UNITEL
-        </Link>
+    <AppShell.Header
+      withBorder={false}
+      style={{
+        backgroundColor: "var(--bg-header)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        borderBottom: "1px solid var(--accent)",
+      }}
+    >
+      <Group h="100%" px={40} justify="space-between" align="center" wrap="nowrap">
+        <Image src="/full-logo-dark-mode.png" w={200} h={100} fit="contain" />
 
-        <Group visibleFrom="md">
-          <Menu trigger="hover">
-            <Menu.Target>
-              <Button variant="subtle">Бүтээгдэхүүн</Button>
-            </Menu.Target>
-
-            <Menu.Dropdown>
-              <Menu.Item>Дараа төлбөрт үйлчилгээ</Menu.Item>
-              <Menu.Item>Хосолсон төлбөрт үйлчилгээ</Menu.Item>
-              <Menu.Item>Урьдчилсан төлбөрт үйлчилгээ</Menu.Item>
-              <Menu.Item>Дата үйлчилгээ</Menu.Item>
-              <Menu.Item>Гэр интернэт үйлчилгээ</Menu.Item>
-              <Menu.Item>Олон улсын үйлчилгээ</Menu.Item>
-              <Menu.Item>Tourism</Menu.Item>
-              <Menu.Item>Нэмэлт үйлчилгээ</Menu.Item>
-            </Menu.Dropdown>
-          </Menu>
-
-          <Link href="/home/bonus">
-            <Button variant="subtle">Урамшуулал</Button>
-          </Link>
-
-          <Link href="/home/phone">
-            <Button variant="subtle">Гар утас</Button>
-          </Link>
-
-          <Link href="/home/bill">
-            <Button color="lime">НӨАТ</Button>
-          </Link>
-        </Group>
-
-        <Burger opened={opened} onClick={toggle} hiddenFrom="md" />
+        {isMobile ? (
+          <Group gap="sm" wrap="nowrap">
+            <ThemeToggle />
+            <Burger opened={opened} onClick={toggle} color="var(--text-primary)" />
+          </Group>
+        ) : (
+          <>
+            <Group>
+              {navItems.map((item) => (
+                <Button
+                  key={item.label}
+                  variant="subtle"
+                  style={{ color: "var(--text-primary)" }}
+                  styles={{
+                    root: {
+                      "&:hover": {
+                        backgroundColor: "var(--accent)",
+                        color: "white",
+                      },
+                    },
+                  }}
+                  onClick={() => scrollTo(item.id)}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Group>
+            <Group gap="sm" wrap="nowrap">
+              <Button style={{ backgroundColor: "var(--accent)", color: "var(--text-primary)" }}>
+                Холбогдох
+              </Button>
+              <ThemeToggle />
+            </Group>
+          </>
+        )}
       </Group>
-
-      <Drawer opened={opened} onClose={close} title="UNITEL" hiddenFrom="md">
-        <Stack>
-          <Link href="/home" onClick={close}>
-            Нүүр
-          </Link>
-
-          <Link href="/home/bonus" onClick={close}>
-            Урамшуулал
-          </Link>
-
-          <Link href="/home/phone" onClick={close}>
-            Гар утас
-          </Link>
-
-          <Link href="/home/bill" onClick={close}>
-            НӨАТ
-          </Link>
-        </Stack>
-      </Drawer>
-    </>
+    </AppShell.Header>
   );
 }
