@@ -18,7 +18,7 @@ const navItems = [
 
 export default function HomePage() {
   const [opened, { toggle, close }] = useDisclosure();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 969px)");
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);

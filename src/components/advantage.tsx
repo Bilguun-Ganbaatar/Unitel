@@ -31,7 +31,7 @@ const features = [
 ];
 
 export default function Advantage() {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 969px)");
 
   return (
     <Stack py={80} gap={60}>

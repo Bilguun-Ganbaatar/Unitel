@@ -4,7 +4,7 @@ import { Stack, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function AboutUs() {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 969px)");
 
   return (
     <Stack

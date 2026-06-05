@@ -1,17 +1,17 @@
 "use client";
 
-import { Button, Group, Image, Stack, Text } from "@mantine/core";
+import { Button, Grid, Group, Image, Stack, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function Introduction() {
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 969px)");
 
   return (
     <>
       <Group
         justify="space-around"
         align="center"
-        h={isMobile ? "auto" : 450}
+        h={isMobile ? "auto" : 520}
         py={isMobile ? 40 : 0}
         style={{ flexDirection: isMobile ? "column" : "row" }}
       >
@@ -47,13 +47,22 @@ export default function Introduction() {
         <Text fz={20} fw={700} style={{ color: "var(--text-primary)" }}>
           Нэгдсэн Байр, Хотхонууд
         </Text>
-        <Group justify={isMobile ? "center" : "space-around"} gap={10} wrap="wrap">
+        <Grid>
           {[...Array(6)].map((_, i) => (
-            <Button key={i} h={100} w={160} radius={20} p={0} style={{ border: "none" }}>
-              <Image src="/s/apartments.png" w={160} h={100} style={{ borderRadius: 20 }} />
-            </Button>
+            <Grid.Col key={i} span={{ base: 6, sm: 4, md: 2 }}>
+              <Button
+                bg="transparent"
+                h={100}
+                w="100%"
+                radius={20}
+                p={0}
+                style={{ border: "none" }}
+              >
+                <Image src="/s/apartments.png" w="100%" h={100} style={{ borderRadius: 20 }} />
+              </Button>
+            </Grid.Col>
           ))}
-        </Group>
+        </Grid>
       </Stack>
     </>
   );
