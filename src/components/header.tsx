@@ -6,10 +6,10 @@ import { useMediaQuery } from "@mantine/hooks";
 import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
-  { label: "Танилцуулга", id: "taniltsuulga" },
-  { label: "Давуу тал", id: "davuu-tal" },
-  { label: "Хамтрах", id: "hamtrah" },
+  { label: "Нүүр хуудас ", id: "taniltsuulga" },
   { label: "Бидний тухай", id: "bidnii-tuhai" },
+  { label: "Бүтээгдхүүн", id: "product" },
+  { label: "Давуу тал", id: "davuu-tal" },
 ];
 
 interface HeaderProps {

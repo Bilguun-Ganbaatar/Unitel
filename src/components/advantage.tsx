@@ -5,15 +5,24 @@ import { useMediaQuery } from "@mantine/hooks";
 
 const features = [
   {
-    title: "Сошиал & Чат",
-    description:
-      "Амьдарч буй хотхондоо нэгдэж, хөршүүдээ даган (follow) сошиал болон чатын системээр нэгдэж, халуун дулаан харилцаа итгэлцлийг бий болгох боломжийг үүсгэнэ.",
+    title: "Smart Property Management",
+    description: (
+      <>
+        Ус, цахилгаан, СӨХ төлбөр нэг дор <br /> Автомат нэхэмжлэх систем <br />
+        Төлбөрийн түүх & хяналт <br /> Санхүүгийн ил тод тайлан
+      </>
+    ),
     imgLeft: true,
   },
+
   {
-    title: "Хотхон",
-    description:
-      "Хотхоны үйл ажиллагаа, Сөхийн ил тод тайлан, санал хүсэлт, Агуулах, зогсоол бүртгэл зэрэг бүгд ил байдаг нь хөршүүд, СӨХ хоорондын харилцан итгэлцлийг дэмжинэ.",
+    title: "Parking & Garage System",
+    description: (
+      <>
+        Ашиглагдаагүй гараж түрээслүүлэх <br /> Оршин суугч хоорондын түрээс <br /> Орлогын хяналт
+        <br /> Зогсоолын ухаалаг менежмент
+      </>
+    ),
     imgLeft: false,
   },
   {
@@ -50,12 +59,18 @@ export default function Advantage() {
           key={i}
           justify="space-around"
           align="center"
-          gap={40}
           style={{ flexDirection: isMobile ? "column" : feature.imgLeft ? "row" : "row-reverse" }}
         >
-          <Image src="/s/apartments.png" w={isMobile ? "80%" : 300} />
-          <Stack align="center" w={isMobile ? "90%" : 500}>
-            <Text fz={isMobile ? 28 : 40} fw={600} style={{ color: "#0bb0c1" }} ta="center">
+          <Image
+            src="/s/apartments.png"
+            radius="lg"
+            w={{ base: 200, md: 320 }}
+            h={{ base: 200, md: 320 }}
+            fit="cover"
+          />
+
+          <Stack align="start" w={isMobile ? "90%" : 500}>
+            <Text fz={isMobile ? 28 : 36} fw={600} style={{ color: "#0bb0c1" }}>
               {feature.title}
             </Text>
             <Text size="md" style={{ color: "var(--text-primary)" }}>

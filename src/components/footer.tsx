@@ -1,7 +1,9 @@
 "use client";
 
-import { Container, Group, Image, Stack, Text } from "@mantine/core";
+import { ActionIcon, Container, Group, Image, Stack, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { IconBrandFacebook, IconBrandInstagram, IconBrandYoutube } from "@tabler/icons-react";
+import Link from "next/link";
 
 export default function Footer() {
   const isMobile = useMediaQuery("(max-width: 969px)");
@@ -9,42 +11,108 @@ export default function Footer() {
   return (
     <Container
       strategy="grid"
-      size={1200}
+      size={1100}
       style={{
         backgroundColor: "var(--bg-primary)",
         borderTop: "1px solid #0bb0c1",
       }}
     >
-      <Group
-        justify="space-between"
-        align="flex-start"
-        py={40}
-        px={isMobile ? 20 : 0}
-        style={{ flexDirection: isMobile ? "column" : "row" }}
-        gap={30}
-      >
-        <Image src="/full-logo-dark-mode.png" w={150} h={100} />
-        <Stack gap={10}>
-          <Text fw={600} style={{ color: "#0bb0c1" }}>
-            Холбоо барих
-          </Text>
-          <a style={{ color: "#0bb0c1" }} href="mailto:khalmon@gmail.com">
-            khalmon@gmail.com
-          </a>
-          <a style={{ color: "#0bb0c1" }} href="tel:98112882">
-            98112882
-          </a>
-          <a
-            style={{ color: "#0bb0c1", maxWidth: 300 }}
-            href="https://maps.app.goo.gl/vYwEZousrsuCbYHV9?g_st=ic"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Шинэ айл барилгын материалын худалдааны төв, 2 давхар А8-р павилон, 2-р хороо,
-            Улаанбаатар 11000
-          </a>
-        </Stack>
-      </Group>
+      <Stack>
+        <Group
+          justify="space-between"
+          align="flex-start"
+          py={40}
+          px={isMobile ? 20 : 0}
+          style={{
+            flexDirection: isMobile ? "column" : "row",
+            borderBottom: "1px solid #0bb0c1",
+          }}
+          gap={30}
+        >
+          <Stack>
+            <Image
+              src="/full-logo-dark-mode.png"
+              w={150}
+              h={80}
+              style={{ cursor: "pointer" }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            />{" "}
+            <Text fz={20} fw={600} style={{ color: "#0bb0c1" }}>
+              Холбоо барих
+            </Text>
+            <Link
+              href="mailto:khalmon@gmail.com"
+              style={{ color: "#0bb0c1", textDecoration: "none" }}
+            >
+              khalmon@gmail.com
+            </Link>
+            <Link href="tel:98112882" style={{ textDecoration: "none" }}>
+              <Text inherit c="#0bb0c1">
+                98112882
+              </Text>
+            </Link>
+            <Link
+              href="https://maps.app.goo.gl/vYwEZousrsuCbYHV9?g_st=ic"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#0bb0c1",
+                maxWidth: 500,
+                textDecoration: "none",
+              }}
+            >
+              Шинэ айл барилгын материалын худалдааны төв, 2 давхар А8-р павилон, 2-р хороо,
+              Улаанбаатар 11000
+            </Link>
+          </Stack>
+          <Stack gap={10}>
+            <Text fz={25} fw={700} style={{ color: "#0bb0c1" }}>
+              Апп татах
+            </Text>
+            <Link href={"https://apps.apple.com/mn/app/facebook/id284882215"} target="_blank">
+              <Image src="/Appstore.svg" fit="contain" w="150" />
+            </Link>
+            <Link href={"https://apps.apple.com/mn/app/facebook/id284882215"} target="_blank">
+              <Image src="/Playstore.svg" fit="contain" w="150" />
+            </Link>
+          </Stack>
+        </Group>
+        <Group h="50" justify="space-between">
+          <Text c="grey">© 2025. Халмон Трейд ХХК</Text>
+          <Group>
+            <ActionIcon
+              size="lg"
+              variant="outline"
+              style={{ background: "none" }}
+              component="a"
+              href={"https://apps.apple.com/mn/app/facebook/id284882215"}
+              target="_blank"
+            >
+              <IconBrandFacebook style={{ width: "70%", height: "70%" }} />
+            </ActionIcon>
+            <ActionIcon
+              size="lg"
+              variant="outline"
+              style={{ background: "none" }}
+              component="a"
+              href={"https://apps.apple.com/mn/app/facebook/id284882215"}
+              target="_blank"
+            >
+              <IconBrandInstagram style={{ width: "70%", height: "70%" }} />
+            </ActionIcon>
+            <ActionIcon
+              size="lg"
+              variant="outline"
+              style={{ background: "none" }}
+              component="a"
+              href={"https://apps.apple.com/mn/app/facebook/id284882215"}
+              target="_blank"
+            >
+              <IconBrandYoutube style={{ width: "70%", height: "70%" }} />
+            </ActionIcon>
+          </Group>
+        </Group>
+      </Stack>
     </Container>
   );
 }
