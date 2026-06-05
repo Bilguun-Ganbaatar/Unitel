@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Group, Image, Stack, Text } from "@mantine/core";
+import { Group, Image, Stack, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 const features = [
@@ -35,7 +35,7 @@ export default function Advantage() {
 
   return (
     <Stack py={80} gap={60}>
-      <Container strategy="grid" size={800}>
+      <Stack>
         <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} ta="center">
           Халуун дулаан, харилцан итгэлцсэн, хялбар шийдэл
         </Text>
@@ -43,22 +43,22 @@ export default function Advantage() {
           Халуун дулаанаар айл бүрийг холбох сошиал платформ. Харилцан итгэлцсэн ил тод, хотхоны
           мэдээлэл, тайлан, шилэн СӨХ, Хялбар энгийн онлайн төлбөр, мобайл паркинг.
         </Text>
-      </Container>
+      </Stack>
 
       {features.map((feature, i) => (
         <Group
           key={i}
-          justify="center"
+          justify="space-around"
           align="center"
           gap={40}
           style={{ flexDirection: isMobile ? "column" : feature.imgLeft ? "row" : "row-reverse" }}
         >
-          <Image src="/s/apartments.png" w={isMobile ? "80%" : 200} />
+          <Image src="/s/apartments.png" w={isMobile ? "80%" : 300} />
           <Stack align="center" w={isMobile ? "90%" : 500}>
             <Text fz={isMobile ? 28 : 40} fw={600} style={{ color: "#0bb0c1" }} ta="center">
               {feature.title}
             </Text>
-            <Text size="md" style={{ color: "var(--text-primary)" }} ta="center">
+            <Text size="md" style={{ color: "var(--text-primary)" }}>
               {feature.description}
             </Text>
           </Stack>

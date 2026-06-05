@@ -20,7 +20,7 @@ export default function AboutUs() {
       <Text
         size="md"
         style={{ color: "var(--text-primary)" }}
-        w={isMobile ? "100%" : 400}
+        w={isMobile ? "100%" : 500}
         ta="center"
       >
         Халмон трейдчууд бид програм хангамж, платформ хөгжүүлэлт болон дата менежментийн олон
