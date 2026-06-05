@@ -4,14 +4,14 @@ import { Button, Grid, Group, Image, Stack, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function Introduction() {
-  const isMobile = useMediaQuery("(max-width: 969px)");
+  const isMobile = useMediaQuery("(max-width: 550px)");
 
   return (
     <>
       <Group
         justify="space-around"
         align="center"
-        h={isMobile ? "auto" : 520}
+        h={isMobile ? "auto" : 550}
         py={isMobile ? 40 : 0}
         style={{ flexDirection: isMobile ? "column" : "row" }}
       >
@@ -35,8 +35,8 @@ export default function Introduction() {
         </Stack>
 
         <iframe
-          width={isMobile ? "100%" : 500}
-          height={isMobile ? 200 : 300}
+          width={isMobile ? "auto" : 500}
+          height={isMobile ? "auto" : 300}
           src="https://www.youtube.com/embed/dQw4w9WgXcQ"
           allowFullScreen
           style={{ borderRadius: "12px", border: "none", padding: isMobile ? "0 20px" : 0 }}
