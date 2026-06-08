@@ -36,12 +36,7 @@ export default function AboutUs() {
       <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} ta="center">
         Мон сөхийг хөгжүүлэгч
       </Text>
-      <Text
-        size="md"
-        style={{ color: "var(--text-primary)" }}
-        w={isMobile ? "100%" : 500}
-        ta="center"
-      >
+      <Text size="md" style={{ color: "var(--text-primary)" }}>
         Халмон трейдчууд бид програм хангамж, платформ хөгжүүлэлт болон дата менежментийн олон
         төслүүдээрээ харилцагч, үйлчлүүлэгчдийнхээ үнэ цэнийг нэмэгдүүлж, дижитал соёлыг бүтээн
         байгуулахад нь тусалдаг.

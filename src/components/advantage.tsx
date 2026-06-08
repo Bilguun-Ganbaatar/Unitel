@@ -97,16 +97,22 @@ export default function Advantage() {
     <Stack py={80} gap={60}>
       <Stack
         ref={headerRef}
+        px={20}
         style={{
           opacity: headerVisible ? 1 : 0,
           transform: headerVisible ? "translateY(0)" : "translateY(40px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} ta="center">
+        <Text fz={isMobile ? 30 : 50} fw={700} c="brand" ta={isMobile ? "left" : "center"}>
           Халуун дулаан, харилцан итгэлцсэн, хялбар шийдэл
         </Text>
-        <Text size="md" style={{ color: "var(--text-primary)" }} ta="center" mt={16}>
+        <Text
+          size="md"
+          style={{ color: "var(--text-primary)" }}
+          ta={isMobile ? "left" : "center"}
+          mt={16}
+        >
           Халуун дулаанаар айл бүрийг холбох сошиал платформ. Харилцан итгэлцсэн ил тод, хотхоны
           мэдээлэл, тайлан, шилэн СӨХ, Хялбар энгийн онлайн төлбөр, мобайл паркинг.
         </Text>

@@ -74,7 +74,7 @@ export default function Pricing() {
     >
       <form onSubmit={handleSubmit} style={{ width: "100%" }}>
         <Stack>
-          <Title order={isMobile ? 2 : 1} style={{ color: "var(--text-primary)" }}>
+          <Title order={isMobile ? 2 : 1} c="brand">
             Монсөх - Үнийн санал
           </Title>
           <Text size="md" style={{ color: "var(--text-secondary)" }}>

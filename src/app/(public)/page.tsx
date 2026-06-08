@@ -112,7 +112,7 @@ export default function HomePage() {
       <AppShell.Main>
         <Container
           strategy="grid"
-          size={1200}
+          size={1000}
           p={0}
           style={{ backgroundColor: "var(--bg-primary)" }}
         >
