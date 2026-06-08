@@ -1,6 +1,6 @@
 "use client";
 
-import { Group, Image, Stack, Text } from "@mantine/core";
+import { Box, Group, Image, Stack, Text } from "@mantine/core";
 import { useIntersection, useMediaQuery } from "@mantine/hooks";
 import { useEffect, useState } from "react";
 
@@ -65,13 +65,22 @@ function FeatureItem({
         transition: "opacity 0.6s ease, transform 0.6s ease",
       }}
     >
-      <Image
-        src="/s/apartments.png"
-        radius="lg"
-        w={{ base: 200, md: 320 }}
-        h={{ base: 200, md: 320 }}
-        fit="cover"
-      />
+      <Box style={{ position: "relative", width: 200 }}>
+        <Image src="/s/mobile-frame.webp" fit="contain" />
+
+        <Image
+          src="/s/screenshot.png"
+          style={{
+            position: "absolute",
+            top: "2%",
+            left: "5%",
+            width: "90%",
+            height: "96%",
+            objectFit: "cover",
+            borderRadius: 25,
+          }}
+        />
+      </Box>
       <Stack align="start" w={isMobile ? "90%" : 500}>
         <Text fz={isMobile ? 28 : 36} fw={600} c={"brand"}>
           {feature.title}
