@@ -6,6 +6,8 @@ import Footer from "@/src/components/footer";
 import Header from "@/src/components/header";
 import Introduction from "@/src/components/introduction";
 import Work_w_us from "@/src/components/work_w_us";
+import Price from "@/src/components/price";
+
 import {
   Accordion,
   Affix,
@@ -125,6 +127,9 @@ export default function HomePage() {
           </div>
           <div id="davuu-tal">
             <Advantage />
+          </div>
+          <div id="price">
+            <Price />
           </div>
 
           <Stack

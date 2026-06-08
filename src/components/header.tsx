@@ -10,6 +10,7 @@ const navItems = [
   { label: "Бидний тухай", id: "bidnii-tuhai" },
   { label: "Бүтээгдхүүн", id: "product" },
   { label: "Давуу тал", id: "davuu-tal" },
+  { label: "Үнийн санал", id: "price" },
 ];
 
 interface HeaderProps {
@@ -19,7 +20,7 @@ interface HeaderProps {
 }
 
 export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
-  const isMobile = useMediaQuery("(max-width: 969px)");
+  const isMobile = useMediaQuery("(max-width: 1135px)");
 
   return (
     <AppShell.Header
