@@ -1,7 +1,8 @@
 "use client";
 
 import { Group, Image, Stack, Text } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { useIntersection, useMediaQuery } from "@mantine/hooks";
+import { useEffect, useState } from "react";
 
 const features = [
   {
@@ -14,7 +15,6 @@ const features = [
     ),
     imgLeft: true,
   },
-
   {
     title: "Parking & Garage System",
     description: (
@@ -39,12 +39,70 @@ const features = [
   },
 ];
 
+function FeatureItem({
+  feature,
+  isMobile,
+}: {
+  feature: (typeof features)[0];
+  isMobile: boolean | undefined;
+}) {
+  const { ref, entry } = useIntersection({ threshold: 0.2 });
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (entry?.isIntersecting) setVisible(true);
+  }, [entry?.isIntersecting]);
+
+  return (
+    <Group
+      ref={ref}
+      justify="space-around"
+      align="center"
+      style={{
+        flexDirection: isMobile ? "column" : feature.imgLeft ? "row" : "row-reverse",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(40px)",
+        transition: "opacity 0.6s ease, transform 0.6s ease",
+      }}
+    >
+      <Image
+        src="/s/apartments.png"
+        radius="lg"
+        w={{ base: 200, md: 320 }}
+        h={{ base: 200, md: 320 }}
+        fit="cover"
+      />
+      <Stack align="start" w={isMobile ? "90%" : 500}>
+        <Text fz={isMobile ? 28 : 36} fw={600} style={{ color: "#0bb0c1" }}>
+          {feature.title}
+        </Text>
+        <Text size="md" style={{ color: "var(--text-primary)" }}>
+          {feature.description}
+        </Text>
+      </Stack>
+    </Group>
+  );
+}
+
 export default function Advantage() {
   const isMobile = useMediaQuery("(max-width: 969px)");
+  const { ref: headerRef, entry: headerEntry } = useIntersection({ threshold: 0.3 });
+  const [headerVisible, setHeaderVisible] = useState(false);
+
+  useEffect(() => {
+    if (headerEntry?.isIntersecting) setHeaderVisible(true);
+  }, [headerEntry?.isIntersecting]);
 
   return (
     <Stack py={80} gap={60}>
-      <Stack>
+      <Stack
+        ref={headerRef}
+        style={{
+          opacity: headerVisible ? 1 : 0,
+          transform: headerVisible ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}
+      >
         <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} ta="center">
           Халуун дулаан, харилцан итгэлцсэн, хялбар шийдэл
         </Text>
@@ -55,29 +113,7 @@ export default function Advantage() {
       </Stack>
 
       {features.map((feature, i) => (
-        <Group
-          key={i}
-          justify="space-around"
-          align="center"
-          style={{ flexDirection: isMobile ? "column" : feature.imgLeft ? "row" : "row-reverse" }}
-        >
-          <Image
-            src="/s/apartments.png"
-            radius="lg"
-            w={{ base: 200, md: 320 }}
-            h={{ base: 200, md: 320 }}
-            fit="cover"
-          />
-
-          <Stack align="start" w={isMobile ? "90%" : 500}>
-            <Text fz={isMobile ? 28 : 36} fw={600} style={{ color: "#0bb0c1" }}>
-              {feature.title}
-            </Text>
-            <Text size="md" style={{ color: "var(--text-primary)" }}>
-              {feature.description}
-            </Text>
-          </Stack>
-        </Group>
+        <FeatureItem key={i} feature={feature} isMobile={isMobile} />
       ))}
     </Stack>
   );

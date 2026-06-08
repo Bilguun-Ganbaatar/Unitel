@@ -18,8 +18,9 @@ import {
   Text,
   Transition,
 } from "@mantine/core";
-import { useDisclosure, useMediaQuery, useWindowScroll } from "@mantine/hooks";
+import { useDisclosure, useIntersection, useMediaQuery, useWindowScroll } from "@mantine/hooks";
 import { IconArrowBadgeUp } from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Танилцуулга", id: "taniltsuulga" },
@@ -56,6 +57,14 @@ const items = data.map((item, index) => (
 export default function HomePage() {
   const [opened, { toggle, close }] = useDisclosure();
   const isMobile = useMediaQuery("(max-width: 969px)");
+  const [scroll, scrollToasd] = useWindowScroll();
+
+  const { ref: faqRef, entry: faqEntry } = useIntersection({ threshold: 0.2 });
+  const [faqVisible, setFaqVisible] = useState(false);
+
+  useEffect(() => {
+    if (faqEntry?.isIntersecting) setFaqVisible(true);
+  }, [faqEntry?.isIntersecting]);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -65,8 +74,6 @@ export default function HomePage() {
     }
     close();
   };
-
-  const [scroll, scrollToasd] = useWindowScroll();
 
   return (
     <AppShell
@@ -78,9 +85,9 @@ export default function HomePage() {
         collapsed: { desktop: true, mobile: !opened },
       }}
     >
-      <Header opened={opened} toggle={toggle} scrollTo={scrollTo} />{" "}
+      <Header opened={opened} toggle={toggle} scrollTo={scrollTo} />
       <AppShell.Navbar py={20} px={20}>
-        <Flex justify={"space-between"}>
+        <Flex justify="space-between">
           <Stack gap={8} align="flex-start">
             {navItems.map((item) => (
               <Button
@@ -99,6 +106,7 @@ export default function HomePage() {
           <Burger opened={opened} onClick={toggle} />
         </Flex>
       </AppShell.Navbar>
+
       <AppShell.Main>
         <Container
           strategy="grid"
@@ -118,7 +126,17 @@ export default function HomePage() {
           <div id="davuu-tal">
             <Advantage />
           </div>
-          <Stack justify="center" mb={50}>
+
+          <Stack
+            ref={faqRef}
+            justify="center"
+            mb={50}
+            style={{
+              opacity: faqVisible ? 1 : 0,
+              transform: faqVisible ? "translateY(0)" : "translateY(40px)",
+              transition: "opacity 0.6s ease, transform 0.6s ease",
+            }}
+          >
             <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} inline>
               Түгээмэл асуулдтууд
             </Text>
@@ -130,6 +148,7 @@ export default function HomePage() {
 
         <Footer />
       </AppShell.Main>
+
       <Affix position={{ bottom: 20, right: 20 }}>
         <Transition transition="fade-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (

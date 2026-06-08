@@ -1,19 +1,40 @@
 "use client";
 
 import { Button, Grid, Group, Image, Stack, Text } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { useIntersection, useMediaQuery } from "@mantine/hooks";
+import { useEffect, useState } from "react";
 
 export default function Introduction() {
   const isMobile = useMediaQuery("(max-width: 969px)");
 
+  const { ref: heroRef, entry: heroEntry } = useIntersection({ threshold: 0.2 });
+  const [heroVisible, setHeroVisible] = useState(false);
+
+  const { ref: gridRef, entry: gridEntry } = useIntersection({ threshold: 0.2 });
+  const [gridVisible, setGridVisible] = useState(false);
+
+  useEffect(() => {
+    if (heroEntry?.isIntersecting) setHeroVisible(true);
+  }, [heroEntry?.isIntersecting]);
+
+  useEffect(() => {
+    if (gridEntry?.isIntersecting) setGridVisible(true);
+  }, [gridEntry?.isIntersecting]);
+
   return (
     <>
       <Group
+        ref={heroRef}
         justify="space-around"
         align="center"
         h={isMobile ? "auto" : 520}
         py={isMobile ? 40 : 0}
-        style={{ flexDirection: isMobile ? "column" : "row" }}
+        style={{
+          flexDirection: isMobile ? "column" : "row",
+          opacity: heroVisible ? 1 : 0,
+          transform: heroVisible ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}
       >
         <Stack maw={isMobile ? "100%" : 550} px={isMobile ? 20 : 0}>
           <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} inline>
@@ -28,7 +49,6 @@ export default function Introduction() {
               iOS утсанд татах
             </Button>
             <Button size="md" radius={20} variant="outline" flex={1}>
-              {/* <Button size="md" classNames={{ root: classes.darkButton }}> */}
               Android утсанд татах
             </Button>
           </Group>
@@ -43,7 +63,16 @@ export default function Introduction() {
         />
       </Group>
 
-      <Stack px={isMobile ? 20 : 0} pb={40}>
+      <Stack
+        ref={gridRef}
+        px={isMobile ? 20 : 0}
+        pb={40}
+        style={{
+          opacity: gridVisible ? 1 : 0,
+          transform: gridVisible ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}
+      >
         <Text fz={20} fw={700} style={{ color: "var(--text-primary)" }}>
           Нэгдсэн Байр, Хотхонууд
         </Text>
