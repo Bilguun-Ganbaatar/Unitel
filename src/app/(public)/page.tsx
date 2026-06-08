@@ -147,7 +147,7 @@ export default function HomePage() {
             }}
           >
             <Text fz={isMobile ? 35 : 55} fw={700} c="brand" inline>
-              Түгээмэл асуулдтууд
+              Түгээмэл асуултууд
             </Text>
             <Accordion
               styles={{
