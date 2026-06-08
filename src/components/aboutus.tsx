@@ -33,7 +33,7 @@ export default function AboutUs() {
         transition: "opacity 0.6s ease, transform 0.6s ease",
       }}
     >
-      <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} ta="center">
+      <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} ta="center">
         Мон сөхийг хөгжүүлэгч
       </Text>
       <Text

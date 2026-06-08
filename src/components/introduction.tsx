@@ -16,7 +16,7 @@ export default function Introduction() {
         style={{ flexDirection: isMobile ? "column" : "row" }}
       >
         <Stack maw={isMobile ? "100%" : 550} px={isMobile ? 20 : 0}>
-          <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} inline>
+          <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} inline>
             Таны Дижитал хөрш
           </Text>
           <Text size="md" style={{ color: "var(--text-primary)" }}>

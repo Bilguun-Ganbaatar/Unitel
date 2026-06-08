@@ -73,7 +73,7 @@ function FeatureItem({
         fit="cover"
       />
       <Stack align="start" w={isMobile ? "90%" : 500}>
-        <Text fz={isMobile ? 28 : 36} fw={600} style={{ color: "#0bb0c1" }}>
+        <Text fz={isMobile ? 28 : 36} fw={600} c={"brand"}>
           {feature.title}
         </Text>
         <Text size="md" style={{ color: "var(--text-primary)" }}>
@@ -103,7 +103,7 @@ export default function Advantage() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} ta="center">
+        <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} ta="center">
           Халуун дулаан, харилцан итгэлцсэн, хялбар шийдэл
         </Text>
         <Text size="md" style={{ color: "var(--text-primary)" }} ta="center" mt={16}>

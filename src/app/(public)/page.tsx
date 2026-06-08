@@ -5,8 +5,8 @@ import Advantage from "@/src/components/advantage";
 import Footer from "@/src/components/footer";
 import Header from "@/src/components/header";
 import Introduction from "@/src/components/introduction";
-import Work_w_us from "@/src/components/work_w_us";
 import Price from "@/src/components/price";
+import Work_w_us from "@/src/components/work_w_us";
 
 import {
   Accordion,
@@ -142,7 +142,7 @@ export default function HomePage() {
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
-            <Text fz={isMobile ? 35 : 55} fw={700} style={{ color: "#0bb0c1" }} inline>
+            <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} inline>
               Түгээмэл асуулдтууд
             </Text>
             <Accordion order={3} defaultValue="Apples">
