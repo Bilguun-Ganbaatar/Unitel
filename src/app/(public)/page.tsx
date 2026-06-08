@@ -136,14 +136,14 @@ export default function HomePage() {
             ref={faqRef}
             justify="center"
             mb={50}
-            h={400}
+            px={isMobile ? 20 : 40}
             style={{
               opacity: faqVisible ? 1 : 0,
               transform: faqVisible ? "translateY(0)" : "translateY(40px)",
               transition: "opacity 0.6s ease, transform 0.6s ease",
             }}
           >
-            <Text fz={isMobile ? 35 : 55} fw={700} c={"brand"} inline>
+            <Text fz={isMobile ? 35 : 55} fw={700} c="brand" inline>
               Түгээмэл асуулдтууд
             </Text>
             <Accordion order={3} defaultValue="Apples">

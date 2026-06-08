@@ -17,10 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={libreFranklin.className}>
       <body>
-        <MantineProvider theme={theme}>
-          {children}
-          {/* <ThemeProvider></ThemeProvider> */}
-        </MantineProvider>
+        <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>
   );

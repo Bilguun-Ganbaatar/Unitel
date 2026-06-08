@@ -13,7 +13,7 @@ import {
   Title,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { yupResolver } from "mantine-form-yup-resolver";
 import * as Yup from "yup";
 
@@ -45,6 +45,7 @@ function calculatePrice(households: number, payment: string): number {
 
 export default function Pricing() {
   const [opened, { open, close }] = useDisclosure(false);
+  const isMobile = useMediaQuery("(max-width: 969px)");
 
   const form = useForm({
     initialValues: {
@@ -67,13 +68,13 @@ export default function Pricing() {
     <Container
       strategy="grid"
       size={800}
-      p={0}
-      h={700}
+      py={isMobile ? 40 : 80}
+      px={isMobile ? 20 : 0}
       style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ width: "100%" }}>
         <Stack>
-          <Title order={1} style={{ color: "var(--text-primary)" }}>
+          <Title order={isMobile ? 2 : 1} style={{ color: "var(--text-primary)" }}>
             Монсөх - Үнийн санал
           </Title>
           <Text size="md" style={{ color: "var(--text-secondary)" }}>
@@ -83,26 +84,26 @@ export default function Pricing() {
           <TextInput
             placeholder="СӨХ-ийн нэр"
             radius="lg"
-            size="lg"
+            size={isMobile ? "md" : "lg"}
             {...form.getInputProps("name")}
           />
           <NumberInput
             placeholder="Утасны дугаар"
             radius="lg"
-            size="lg"
+            size={isMobile ? "md" : "lg"}
             hideControls
             {...form.getInputProps("phone")}
           />
           <TextInput
             placeholder="Нэмэлт утасны дугаар"
             radius="lg"
-            size="lg"
+            size={isMobile ? "md" : "lg"}
             {...form.getInputProps("extraPhone")}
           />
           <Select
             placeholder="Дундаж төлбөр"
             radius="lg"
-            size="lg"
+            size={isMobile ? "md" : "lg"}
             data={[
               "30,000₮ хүртэл",
               "30,000₮ - 45,000₮",
@@ -117,10 +118,10 @@ export default function Pricing() {
             hideControls
             placeholder="Өрхийн тоо"
             radius="lg"
-            size="lg"
+            size={isMobile ? "md" : "lg"}
             {...form.getInputProps("households")}
           />
-          <Button type="submit" size="lg" radius="lg" fw={700}>
+          <Button type="submit" size={isMobile ? "md" : "lg"} radius="lg" fw={700}>
             Үргэлжлүүлэх
           </Button>
         </Stack>
