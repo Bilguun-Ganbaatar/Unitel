@@ -19,6 +19,7 @@ import {
   Stack,
   Text,
   Transition,
+  useMantineTheme,
 } from "@mantine/core";
 import { useDisclosure, useIntersection, useMediaQuery, useWindowScroll } from "@mantine/hooks";
 import { IconArrowBadgeUp } from "@tabler/icons-react";
@@ -60,6 +61,8 @@ export default function HomePage() {
   const [opened, { toggle, close }] = useDisclosure();
   const isMobile = useMediaQuery("(max-width: 969px)");
   const [scroll, scrollToasd] = useWindowScroll();
+
+  const theme = useMantineTheme();
 
   const { ref: faqRef, entry: faqEntry } = useIntersection({ threshold: 0.2 });
   const [faqVisible, setFaqVisible] = useState(false);
@@ -146,7 +149,13 @@ export default function HomePage() {
             <Text fz={isMobile ? 35 : 55} fw={700} c="brand" inline>
               Түгээмэл асуулдтууд
             </Text>
-            <Accordion order={3} defaultValue="Apples">
+            <Accordion
+              styles={{
+                control: {
+                  color: theme.colors[theme.primaryColor][8],
+                },
+              }}
+            >
               {items}
             </Accordion>
           </Stack>
