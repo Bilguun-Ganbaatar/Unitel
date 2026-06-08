@@ -33,7 +33,13 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
       }}
     >
       <Flex h="100%" px={isMobile ? 20 : 40} justify="space-between" align="center" wrap="nowrap">
-        <Image src="/full-logo-dark-mode.png" w={200} h={100} fit="contain" />
+        <Image
+          src="/full-logo-dark-mode.png"
+          w={200}
+          h={100}
+          fit="contain"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        />
 
         {isMobile ? (
           <Group gap="sm" wrap="nowrap">

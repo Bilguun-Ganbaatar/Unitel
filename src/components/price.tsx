@@ -14,6 +14,29 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
+import { yupResolver } from "mantine-form-yup-resolver";
+import * as Yup from "yup";
+
+const schema = Yup.object().shape({
+  name: Yup.string().required("СӨХ нэр оруулна уу."),
+  phone: Yup.mixed()
+    .test("required", "Утасны дугаар оруулна уу.", (v) => v !== "" && v !== undefined && v !== null)
+    .test("format", "Утасны дугаар 8 оронтой тоо байх ёстой.", (v) => {
+      if (v === undefined || v === null || v === "") return true;
+      return /^\d{8}$/.test(String(v));
+    }),
+  extraPhone: Yup.string()
+    .transform((v) => (v === "" ? undefined : v))
+    .matches(/^\d{8}$/, "Утасны дугаар 8 оронтой тоо байх ёстой.")
+    .optional(),
+  payment: Yup.string().required("Сонгоно уу."),
+  households: Yup.mixed()
+    .test("required", "Өрхийн тоо оруулна уу.", (v) => v !== "" && v !== undefined && v !== null)
+    .test("format", "Зөвхөн тоо оруулна уу.", (v) => {
+      if (v === undefined || v === null || v === "") return true;
+      return /^\d+$/.test(String(v));
+    }),
+});
 
 function calculatePrice(households: number, payment: string): number {
   const base = 180000;
@@ -31,24 +54,7 @@ export default function Pricing() {
       payment: "",
       households: "",
     },
-    validate: {
-      name: (v) => (v.trim().length === 0 ? "СӨХ нэр оруулна уу." : null),
-      phone: (v) =>
-        v.trim().length === 0
-          ? "Утасны дугаар оруулна уу."
-          : !/^\d{8}$/.test(v)
-          ? "Утасны дугаар зөв оруулна уу."
-          : null,
-      extraPhone: (v) =>
-        v.trim().length === 0 ? null : !/^\d{8}$/.test(v) ? "Утасны дугаар зөв оруулна уу." : null,
-      payment: (v) => (!v ? "Сонгоно уу." : null),
-      households: (v) =>
-        v.trim().length === 0
-          ? "Өрхийн тоо оруулна уу."
-          : !/^\d+$/.test(v)
-          ? "Зөвхөн тоо оруулна уу."
-          : null,
-    },
+    validate: yupResolver(schema),
   });
 
   const handleSubmit = form.onSubmit(() => {
@@ -78,8 +84,8 @@ export default function Pricing() {
             placeholder="Утасны дугаар"
             radius="lg"
             size="lg"
-            {...form.getInputProps("phone")}
             hideControls
+            {...form.getInputProps("phone")}
           />
           <TextInput
             placeholder="Нэмэлт утасны дугаар"

@@ -22,7 +22,7 @@ export default function ThemeToggle() {
     <Switch
       checked={isDark}
       onChange={() => setColorScheme(isDark ? "light" : "dark")}
-      color="#0bb0c1"
+      color="brand"
       size="md"
       thumbIcon={
         isDark ? (
