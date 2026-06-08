@@ -136,6 +136,7 @@ export default function HomePage() {
             ref={faqRef}
             justify="center"
             mb={50}
+            h={400}
             style={{
               opacity: faqVisible ? 1 : 0,
               transform: faqVisible ? "translateY(0)" : "translateY(40px)",

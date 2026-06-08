@@ -64,7 +64,13 @@ export default function Pricing() {
   const price = calculatePrice(Number(form.values.households), form.values.payment);
 
   return (
-    <Container strategy="grid" size={800} p={0} h={700}>
+    <Container
+      strategy="grid"
+      size={800}
+      p={0}
+      h={700}
+      style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
       <form onSubmit={handleSubmit}>
         <Stack>
           <Title order={1} style={{ color: "var(--text-primary)" }}>
