@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 
 export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
-  const isMobile = useMediaQuery("(max-width: 1135px)");
+  const isMobile = useMediaQuery("(max-width: 1160px)");
 
   return (
     <AppShell.Header
@@ -61,7 +61,7 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
               ))}
             </Group>
             <Group gap="sm" wrap="nowrap">
-              <Button>Холбогдох</Button>
+              <Button>Хүсэлт илгээх</Button>
               <ThemeToggle />
             </Group>
           </>
