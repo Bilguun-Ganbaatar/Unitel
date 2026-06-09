@@ -5,6 +5,7 @@ import Advantage from "@/src/components/advantage";
 import Footer from "@/src/components/footer";
 import Header from "@/src/components/header";
 import Introduction from "@/src/components/introduction";
+import Plans from "@/src/components/plans";
 import Price from "@/src/components/price";
 import Work_w_us from "@/src/components/work_w_us";
 
@@ -133,6 +134,9 @@ export default function HomePage() {
           </div>
           <div id="price">
             <Price />
+          </div>
+          <div id="plans">
+            <Plans />
           </div>
 
           <Stack

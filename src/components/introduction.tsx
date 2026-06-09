@@ -2,6 +2,7 @@
 
 import { Button, Grid, Group, Image, Stack, Text } from "@mantine/core";
 import { useIntersection, useMediaQuery } from "@mantine/hooks";
+import { IconBrandAndroid, IconBrandApple } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
 export default function Introduction() {
@@ -37,29 +38,53 @@ export default function Introduction() {
         }}
       >
         <Stack maw={isMobile ? "100%" : 480}>
-          <Text fz={isMobile ? 35 : 55} fw={700} c="brand" inline>
-            Таны Дижитал хөрш
+          <Text
+            fz={isMobile ? 32 : 46}
+            fw={600}
+            style={{ color: "var(--text-primary)", lineHeight: 1.15 }}
+          >
+            Таны{" "}
+            <Text component="span" c="brand" inherit>
+              дижитал
+            </Text>{" "}
+            хөрш
           </Text>
-          <Text size="md" style={{ color: "var(--text-primary)" }}>
-            Монсөх нь хотхонд суурилсан Сошиал Платформ юм. Гэр болон түүнтэй холбоотой бүх
-            харилцааг нэгтгэн бүтээсэн Монгол сошиал сүлжээнд тавтай морил.
+
+          <Text size="md" style={{ color: "var(--text-primary)", lineHeight: 1.7 }}>
+            Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
+            харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
           </Text>
-          <Group justify="space-around">
-            <Button size="md" radius={20} variant="outline" flex={1}>
-              iOS утсанд татах
+
+          <Group gap={12} wrap="wrap">
+            <Button
+              size="md"
+              radius={20}
+              variant="outline"
+              flex={1}
+              leftSection={<IconBrandApple size={17} />}
+            >
+              iOS татах
             </Button>
-            <Button size="md" radius={20} variant="outline" flex={1}>
-              Android утсанд татах
+            <Button
+              size="md"
+              radius={20}
+              variant="filled"
+              flex={1}
+              leftSection={<IconBrandAndroid size={17} />}
+            >
+              Android татах
             </Button>
           </Group>
         </Stack>
 
         <iframe
-          width={isMobile ? "100%" : 460}
-          height={isMobile ? 220 : 300}
+          width={isMobile ? "100%" : 440}
+          height={isMobile ? 220 : 290}
           src="https://www.youtube.com/embed/dQw4w9WgXcQ"
           allowFullScreen
-          style={{ borderRadius: "12px", border: "none" }}
+          style={{
+            borderRadius: 16,
+          }}
         />
       </Group>
 
@@ -73,8 +98,11 @@ export default function Introduction() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        <Text fz={20} fw={700} c="brand">
-          Нэгдсэн Байр, Хотхонууд
+        <Text fz={20} fw={700} style={{ color: "var(--text-primary)", lineHeight: 1.15 }}>
+          Нэгдсэн{" "}
+          <Text component="span" c="brand" inherit>
+            Байр, Хотхонууд
+          </Text>
         </Text>
         <Grid>
           {[...Array(6)].map((_, i) => (
