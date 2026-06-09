@@ -58,11 +58,14 @@ function FeatureItem({
       ref={ref}
       justify="space-around"
       align="center"
+      mx={isMobile ? 20 : 0}
       style={{
         flexDirection: isMobile ? "column" : feature.imgLeft ? "row" : "row-reverse",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(40px)",
         transition: "opacity 0.6s ease, transform 0.6s ease",
+        borderBottom: isMobile ? "2px solid var(--mantine-color-brand-6)" : "none",
+        paddingBottom: isMobile ? 24 : 0,
       }}
     >
       <Box style={{ position: "relative", width: 200 }}>
