@@ -73,7 +73,7 @@ export default function Introduction() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        <Text fz={20} fw={700} style={{ color: "var(--text-primary)" }}>
+        <Text fz={20} fw={700} c="brand">
           Нэгдсэн Байр, Хотхонууд
         </Text>
         <Grid>
