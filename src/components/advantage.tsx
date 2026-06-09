@@ -36,7 +36,7 @@ const features = [
     imgLeft: true,
   },
   {
-    title: "Admin Dashboard (SӨХ Manager)",
+    title: "Admin Dashboard (СӨХ Manager)",
     description: (
       <>
         Нэг dashboard дээр бүх building удирдах <br /> Засварын дуудлага хуваарилах <br /> Худалдан
