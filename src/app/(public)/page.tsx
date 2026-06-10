@@ -7,6 +7,7 @@ import Header from "@/src/components/header";
 import Introduction from "@/src/components/introduction";
 import Plans from "@/src/components/plans";
 import Price from "@/src/components/price";
+import UbSvg from "@/src/components/svg/ub-svg";
 import Work_w_us from "@/src/components/work_w_us";
 
 import {
@@ -120,7 +121,19 @@ export default function HomePage() {
           p={0}
           style={{ backgroundColor: "var(--bg-primary)" }}
         >
-          <div id="taniltsuulga">
+          <div id="taniltsuulga" style={{ position: "relative" }}>
+            <UbSvg
+              style={{
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "100vw",
+                height: "100%",
+                top: 0,
+                zIndex: 0,
+                overflow: "hidden",
+              }}
+            />
             <Introduction />
           </div>
           <div id="bidnii-tuhai">

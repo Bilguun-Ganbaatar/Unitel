@@ -1,8 +1,16 @@
 "use client";
 
-import { Button, Grid, Group, Image, Stack, Text } from "@mantine/core";
+import { ActionIcon, Box, Button, Flex, Grid, Group, Image, Stack, Text } from "@mantine/core";
 import { useIntersection, useMediaQuery } from "@mantine/hooks";
-import { IconBrandAndroid, IconBrandApple } from "@tabler/icons-react";
+
+import {
+  IconBrandAndroid,
+  IconBrandApple,
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandYoutube,
+} from "@tabler/icons-react";
+
 import { useEffect, useState } from "react";
 
 export default function Introduction() {
@@ -37,25 +45,27 @@ export default function Introduction() {
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}
       >
-        <Stack maw={isMobile ? "100%" : 480}>
-          <Text
-            fz={isMobile ? 32 : 46}
-            fw={600}
-            style={{ color: "var(--text-primary)", lineHeight: 1.15 }}
-          >
-            Таны{" "}
-            <Text component="span" c="brand" inherit>
-              дижитал
-            </Text>{" "}
-            хөрш
-          </Text>
+        <Flex justify="space-between">
+          <Stack w="50%">
+            <Text
+              fz={isMobile ? 32 : 46}
+              fw={600}
+              style={{ color: "var(--text-primary)", lineHeight: 1.15 }}
+            >
+              Таны{" "}
+              <Text component="span" c="brand" inherit>
+                дижитал
+              </Text>{" "}
+              хөрш
+            </Text>
 
-          <Text size="md" style={{ color: "var(--text-primary)", lineHeight: 1.7 }}>
-            Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
-            харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
-          </Text>
+            <Text size="md" style={{ color: "var(--text-primary)", lineHeight: 1.7 }}>
+              Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
+              харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
+            </Text>
+          </Stack>
 
-          <Group gap={12} wrap="wrap">
+          <Stack w="45%">
             <Button
               size="md"
               radius={20}
@@ -74,18 +84,40 @@ export default function Introduction() {
             >
               Android татах
             </Button>
-          </Group>
-        </Stack>
-
-        <iframe
-          width={isMobile ? "100%" : 440}
-          height={isMobile ? 220 : 290}
-          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-          allowFullScreen
-          style={{
-            borderRadius: 16,
-          }}
-        />
+            <Group>
+              <ActionIcon
+                size="lg"
+                variant="outline"
+                style={{ background: "none" }}
+                component="a"
+                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                target="_blank"
+              >
+                <IconBrandFacebook style={{ width: "70%", height: "70%" }} />
+              </ActionIcon>
+              <ActionIcon
+                size="lg"
+                variant="outline"
+                style={{ background: "none" }}
+                component="a"
+                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                target="_blank"
+              >
+                <IconBrandInstagram style={{ width: "70%", height: "70%" }} />
+              </ActionIcon>
+              <ActionIcon
+                size="lg"
+                variant="outline"
+                style={{ background: "none" }}
+                component="a"
+                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                target="_blank"
+              >
+                <IconBrandYoutube style={{ width: "70%", height: "70%" }} />
+              </ActionIcon>
+            </Group>
+          </Stack>
+        </Flex>
       </Group>
 
       <Stack
@@ -121,6 +153,22 @@ export default function Introduction() {
           ))}
         </Grid>
       </Stack>
+      <Box style={{ position: "relative", width: 200, margin: "0 auto" }}>
+        <Image src="/s/mobile-frame.webp" fit="contain" />
+
+        <Image
+          src="/s/screenshot.png"
+          style={{
+            position: "absolute",
+            top: "2%",
+            left: "5%",
+            width: "90%",
+            height: "96%",
+            objectFit: "cover",
+            borderRadius: 25,
+          }}
+        />
+      </Box>
     </Stack>
   );
 }
