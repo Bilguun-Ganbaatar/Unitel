@@ -103,7 +103,8 @@ export default function Introduction() {
             <Group justify="center" gap="sm">
               <ActionIcon
                 size="lg"
-                variant="outline"
+                variant="filled"
+                color="#1877F2"
                 component="a"
                 href="https://facebook.com"
                 target="_blank"
@@ -113,17 +114,27 @@ export default function Introduction() {
 
               <ActionIcon
                 size="lg"
-                variant="outline"
-                component="a"
-                href="https://instagram.com"
-                target="_blank"
+                variant="filled"
+                styles={{
+                  root: {
+                    background:
+                      "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
+                    color: "white",
+                    border: 0,
+                    transition: "0.2s",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  },
+                }}
               >
                 <IconBrandInstagram />
               </ActionIcon>
 
               <ActionIcon
                 size="lg"
-                variant="outline"
+                variant="filled"
+                color="#FF0000"
                 component="a"
                 href="https://youtube.com"
                 target="_blank"
@@ -196,7 +207,6 @@ export default function Introduction() {
         </Box>
       </Stack>
 
-      {/* MOBILE FRAME */}
       <Box
         style={{
           position: "relative",

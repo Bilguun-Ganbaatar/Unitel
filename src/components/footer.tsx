@@ -86,36 +86,46 @@ export default function Footer() {
           <Text c="grey" size={isMobile ? "sm" : "md"}>
             © 2025. Халмон Трейд ХХК
           </Text>
-          <Group>
+          <Group justify="center" gap="sm">
             <ActionIcon
               size="lg"
-              variant="outline"
-              style={{ background: "none" }}
+              variant="filled"
+              color="#1877F2"
               component="a"
-              href="https://apps.apple.com/mn/app/facebook/id284882215"
+              href="https://facebook.com"
               target="_blank"
             >
-              <IconBrandFacebook style={{ width: "70%", height: "70%" }} />
+              <IconBrandFacebook />
             </ActionIcon>
+
             <ActionIcon
               size="lg"
-              variant="outline"
-              style={{ background: "none" }}
-              component="a"
-              href="https://apps.apple.com/mn/app/facebook/id284882215"
-              target="_blank"
+              variant="filled"
+              styles={{
+                root: {
+                  background:
+                    "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
+                  color: "white",
+                  border: 0,
+                  transition: "0.2s",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                  },
+                },
+              }}
             >
-              <IconBrandInstagram style={{ width: "70%", height: "70%" }} />
+              <IconBrandInstagram />
             </ActionIcon>
+
             <ActionIcon
               size="lg"
-              variant="outline"
-              style={{ background: "none" }}
+              variant="filled"
+              color="#FF0000"
               component="a"
-              href="https://apps.apple.com/mn/app/facebook/id284882215"
+              href="https://youtube.com"
               target="_blank"
             >
-              <IconBrandYoutube style={{ width: "70%", height: "70%" }} />
+              <IconBrandYoutube />
             </ActionIcon>
           </Group>
         </Group>
