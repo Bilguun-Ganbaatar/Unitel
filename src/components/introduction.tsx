@@ -1,7 +1,10 @@
 "use client";
 
-import { ActionIcon, Box, Button, Flex, Grid, Group, Image, Stack, Text } from "@mantine/core";
+import { Carousel } from "@mantine/carousel";
+import "@mantine/carousel/styles.css";
+import { ActionIcon, Box, Button, Flex, Group, Image, Stack, Text } from "@mantine/core";
 import { useIntersection, useMediaQuery } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
 
 import {
   IconBrandAndroid,
@@ -11,16 +14,22 @@ import {
   IconBrandYoutube,
 } from "@tabler/icons-react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Introduction() {
   const isMobile = useMediaQuery("(max-width: 600px)");
 
-  const { ref: heroRef, entry: heroEntry } = useIntersection({ threshold: 0.2 });
+  const { ref: heroRef, entry: heroEntry } = useIntersection({
+    threshold: 0.2,
+  });
   const [heroVisible, setHeroVisible] = useState(false);
 
-  const { ref: gridRef, entry: gridEntry } = useIntersection({ threshold: 0.2 });
+  const { ref: gridRef, entry: gridEntry } = useIntersection({
+    threshold: 0.2,
+  });
   const [gridVisible, setGridVisible] = useState(false);
+
+  const autoScroll = useRef(AutoScroll({ speed: 1 }));
 
   useEffect(() => {
     if (heroEntry?.isIntersecting) setHeroVisible(true);
@@ -34,23 +43,28 @@ export default function Introduction() {
     <Stack>
       <Group
         ref={heroRef}
-        justify="space-around"
-        align="center"
+        justify="center"
         py={isMobile ? 40 : 60}
         px={20}
-        wrap="wrap"
         style={{
           opacity: heroVisible ? 1 : 0,
           transform: heroVisible ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
+          transition: "0.6s ease",
         }}
       >
-        <Flex justify="space-between">
-          <Stack w="50%">
+        <Flex
+          w="100%"
+          justify="space-between"
+          align="center"
+          gap="xl"
+          direction={{ base: "column", md: "row" }}
+        >
+          {/* TEXT */}
+          <Stack w={{ base: "100%", md: "50%" }}>
             <Text
-              fz={isMobile ? 32 : 46}
+              fz={{ base: 28, sm: 34, md: 46 }}
               fw={600}
-              style={{ color: "var(--text-primary)", lineHeight: 1.15 }}
+              style={{ lineHeight: 1.15, color: "var(--text-primary)" }}
             >
               Таны{" "}
               <Text component="span" c="brand" inherit>
@@ -59,61 +73,62 @@ export default function Introduction() {
               хөрш
             </Text>
 
-            <Text size="md" style={{ color: "var(--text-primary)", lineHeight: 1.7 }}>
+            <Text size="md" style={{ lineHeight: 1.7, color: "var(--text-primary)" }}>
               Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
               харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
             </Text>
           </Stack>
 
-          <Stack w="45%">
+          <Stack w={{ base: "100%", md: "45%" }}>
             <Button
               size="md"
               radius={20}
               variant="outline"
-              flex={1}
+              fullWidth
               leftSection={<IconBrandApple size={17} />}
             >
               iOS татах
             </Button>
+
             <Button
               size="md"
               radius={20}
               variant="filled"
-              flex={1}
+              fullWidth
               leftSection={<IconBrandAndroid size={17} />}
             >
               Android татах
             </Button>
-            <Group>
+
+            <Group justify="center" gap="sm">
               <ActionIcon
                 size="lg"
                 variant="outline"
-                style={{ background: "none" }}
                 component="a"
-                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                href="https://facebook.com"
                 target="_blank"
               >
-                <IconBrandFacebook style={{ width: "70%", height: "70%" }} />
+                <IconBrandFacebook />
               </ActionIcon>
+
               <ActionIcon
                 size="lg"
                 variant="outline"
-                style={{ background: "none" }}
                 component="a"
-                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                href="https://instagram.com"
                 target="_blank"
               >
-                <IconBrandInstagram style={{ width: "70%", height: "70%" }} />
+                <IconBrandInstagram />
               </ActionIcon>
+
               <ActionIcon
                 size="lg"
                 variant="outline"
-                style={{ background: "none" }}
                 component="a"
-                href="https://apps.apple.com/mn/app/facebook/id284882215"
+                href="https://youtube.com"
                 target="_blank"
               >
-                <IconBrandYoutube style={{ width: "70%", height: "70%" }} />
+                <IconBrandYoutube />
               </ActionIcon>
             </Group>
           </Stack>
@@ -127,33 +142,68 @@ export default function Introduction() {
         style={{
           opacity: gridVisible ? 1 : 0,
           transform: gridVisible ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
+          transition: "0.6s ease",
         }}
       >
-        <Text fz={20} fw={700} style={{ color: "var(--text-primary)", lineHeight: 1.15 }}>
+        <Text fz={20} fw={700} mb="xs">
           Нэгдсэн{" "}
           <Text component="span" c="brand" inherit>
             Байр, Хотхонууд
           </Text>
         </Text>
-        <Grid>
-          {[...Array(6)].map((_, i) => (
-            <Grid.Col key={i} span={{ base: 6, sm: 4, md: 2 }}>
-              <Button
-                bg="transparent"
-                h={100}
-                w="100%"
-                radius={20}
-                p={0}
-                style={{ border: "none" }}
-              >
-                <Image src="/s/apartments.png" w="100%" h={100} style={{ borderRadius: 20 }} />
-              </Button>
-            </Grid.Col>
-          ))}
-        </Grid>
+
+        <Box
+          style={{
+            width: "100vw",
+            marginLeft: "calc(50% - 50vw)",
+          }}
+        >
+          <Carousel
+            withControls={false}
+            withIndicators={false}
+            plugins={[autoScroll.current]}
+            onMouseEnter={() => autoScroll.current.stop()}
+            onMouseLeave={() => autoScroll.current.play()}
+            slideSize="auto"
+            slideGap={{ base: "sm", md: "md" }}
+            emblaOptions={{
+              align: "start",
+              loop: true,
+              dragFree: true,
+            }}
+          >
+            {[...Array(18)].map((_, i) => (
+              <Carousel.Slide key={i}>
+                <Button
+                  bg="transparent"
+                  h={100}
+                  w="100%"
+                  radius={20}
+                  p={0}
+                  style={{ border: "none" }}
+                >
+                  <Image
+                    src="/s/apartments.png"
+                    w="100%"
+                    h={100}
+                    fit="cover"
+                    style={{ borderRadius: 20 }}
+                  />
+                </Button>
+              </Carousel.Slide>
+            ))}
+          </Carousel>
+        </Box>
       </Stack>
-      <Box style={{ position: "relative", width: 200, margin: "0 auto" }}>
+
+      {/* MOBILE FRAME */}
+      <Box
+        style={{
+          position: "relative",
+          width: isMobile ? 160 : 200,
+          margin: "0 auto",
+        }}
+      >
         <Image src="/s/mobile-frame.webp" fit="contain" />
 
         <Image
@@ -165,7 +215,7 @@ export default function Introduction() {
             width: "90%",
             height: "96%",
             objectFit: "cover",
-            borderRadius: 25,
+            borderRadius: isMobile ? 18 : 25,
           }}
         />
       </Box>
