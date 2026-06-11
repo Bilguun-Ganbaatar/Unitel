@@ -1,14 +1,17 @@
 "use client";
 
+import { featureGroups, resourceItems, solutionItems, whyItems } from "@/src/data/monsohNavigation";
 import {
+  Accordion,
   AppShell,
-  Burger,
+  Box,
   Button,
   Divider,
   Flex,
   Group,
   Image,
   Menu,
+  ScrollArea,
   SimpleGrid,
   Stack,
   Text,
@@ -20,215 +23,23 @@ import { IconChevronDown } from "@tabler/icons-react";
 import type { ReactNode } from "react";
 import ThemeToggle from "./ThemeToggle";
 
-export const featureGroups = [
-  {
-    title: "Санхүү",
-    id: "features-financial",
-    items: [
-      {
-        label: "Нэхэмжлэл & төлбөр",
-        description: "Төлбөрөө хурдан, хялбар авах",
-        id: "feature-invoicing-payments",
-      },
-      {
-        label: "Нягтлан бодох бүртгэл",
-        description: "Энгийн, найдвартай санхүүгийн бүртгэл",
-        id: "feature-accounting",
-      },
-      {
-        label: "Төсөв & тайлан",
-        description: "Удирдах зөвлөлд зориулсан мэргэжлийн тайлан",
-        id: "feature-budgets-reports",
-      },
-      {
-        label: "Банкны холболт",
-        description: "Гүйлгээ гараар шивэх ажлыг багасгана",
-        id: "feature-bank-integrations",
-      },
-      {
-        label: "Өглөг & нийлүүлэгч",
-        description: "Зөвшөөрөл, төлбөрийг автомат урсгалд оруулах",
-        id: "feature-payables-vendors",
-      },
-      {
-        label: "Санхүүгийн бүртгэлийн үйлчилгээ",
-        description: "СӨХ-ийн санхүүгийн бүртгэлд мэргэжлийн дэмжлэг",
-        id: "feature-bookkeeping-services",
-      },
-    ],
-    viewAllLabel: "Санхүүгийн бүх боломж",
-  },
-  {
-    title: "Харилцаа холбоо",
-    id: "features-communications",
-    items: [
-      {
-        label: "Нийтэд мэдээлэл хүргэх",
-        description: "Мессеж, имэйл, дуудлагаар оршин суугчдад хүрэх",
-        id: "feature-mass-communication",
-      },
-      {
-        label: "Мэдэгдлийн булан",
-        description: "Зар, мэдэгдлийг нэг дор эмх цэгцтэй хүргэх",
-        id: "feature-mailroom",
-      },
-      {
-        label: "Хэлэлцүүлгийн самбар",
-        description: "Хотхоны дотоод форум, санал солилцоо",
-        id: "feature-message-boards",
-      },
-      {
-        label: "Вэб хуудас бүтээгч",
-        description: "СӨХ, хотхонд зориулсан танилцуулга вэб хуудас",
-        id: "feature-website-builder",
-      },
-    ],
-    viewAllLabel: "Харилцаа холбооны бүх боломж",
-  },
-  {
-    title: "Удирдлага",
-    id: "features-management",
-    items: [
-      {
-        label: "Зөрчил бүртгэл",
-        description: "Дотоод журам, зөрчлийг хялбар бүртгэж хянах",
-        id: "feature-violations",
-      },
-      {
-        label: "Хүсэлтийн маягт",
-        description: "Засвар, санал, хүсэлтийг inbox-оос салгах",
-        id: "feature-request-forms",
-      },
-      {
-        label: "Баримт бичгийн сан",
-        description: "Гэрээ, дүрэм, тайлангаа хадгалж хуваалцах",
-        id: "feature-document-storage",
-      },
-      {
-        label: "Санал асуулга & судалгаа",
-        description: "Цаасгүй санал хураалт, оршин суугчдын судалгаа",
-        id: "feature-voting-surveys",
-      },
-      {
-        label: "Оршин суугчийн портал",
-        description: "Оршин суугч бүрт зориулсан нэг нэгдсэн төв",
-        id: "feature-owner-portals",
-      },
-      {
-        label: "Шилжилтийн баримт",
-        description: "Лавлагаа, өмчлөл шилжилтийн бичиг баримтыг цэгцлэх",
-        id: "feature-resale-documents",
-      },
-    ],
-    viewAllLabel: "Удирдлагын бүх боломж",
-  },
-  {
-    title: "Бүтээгдэхүүн",
-    id: "features-product",
-    items: [
-      {
-        label: "Интеграци",
-        description: "Хэрэгтэй системүүдийг нэг дор холбох",
-        id: "feature-integrations",
-      },
-      {
-        label: "Аюулгүй байдал",
-        description: "Өгөгдөл хамгаалалт, найдвартай хандалт",
-        id: "feature-security",
-      },
-      {
-        label: "Дэмжлэг & нэвтрүүлэлт",
-        description: "Систем нэвтрүүлэх болон хэрэглэгчийн тусламж",
-        id: "feature-support-onboarding",
-      },
-    ],
-    viewAllLabel: "Бүтээгдэхүүний бүх боломж",
-  },
-];
-
-export const solutionItems = [
-  {
-    label: "Өөрөө удирддаг СӨХ",
-    description: "Удирдах зөвлөл, СӨХ-ийн ажилтнуудад зориулсан өдөр тутмын удирдлага",
-    id: "solution-self-managed",
-  },
-  {
-    label: "Менежментийн компаниуд",
-    description: "Олон хотхон, олон объект удирддаг байгууллагад зориулсан шийдэл",
-    id: "solution-property-management",
-  },
-];
-
-export const whyItems = [
-  {
-    label: "Бидний тухай",
-    description: "Монсөхийг Монгол хотхон, СӨХ-ийн бодит хэрэгцээнд зориулж хөгжүүлсэн.",
-    id: "why-about-us",
-  },
-  {
-    label: "Амжилтын түүхүүд",
-    description: "Хотхон, СӨХ-үүд өдөр тутмын ажлаа хэрхэн хялбарчилж байгаа жишээ.",
-    id: "why-success-stories",
-  },
-  {
-    label: "Түгээмэл асуултууд",
-    description: "Нэвтрүүлэлт, төлбөр, хэрэглээтэй холбоотой хамгийн нийтлэг асуултууд.",
-    id: "faq",
-  },
-  {
-    label: "Хэвлэл мэдээлэл",
-    description: "Монсөхийн тухай мэдээ, танилцуулга, шинэчлэлүүд.",
-    id: "why-press",
-  },
-];
-
-export const resourceItems = [
-  {
-    label: "Нөөцийн төв",
-    description: "СӨХ-ийн дижитал шилжилтэд хэрэгтэй бүх мэдээлэл.",
-    id: "resource-hub",
-  },
-  {
-    label: "Блог",
-    description: "Хотхон, төлбөр, харилцаа холбоо, удирдлагын зөвлөмжүүд.",
-    id: "resource-blog",
-  },
-  {
-    label: "Нэр томьёоны тайлбар",
-    description: "СӨХ, хотхон, санхүүгийн хэрэглэгддэг ойлголтуудыг энгийнээр.",
-    id: "resource-glossary",
-  },
-  {
-    label: "Мэдлэгийн сан",
-    description: "Систем ашиглах заавар, алхамчилсан тусламж.",
-    id: "resource-knowledge-base",
-  },
-  {
-    label: "Холбоо барих",
-    description: "Борлуулалт, дэмжлэгийн багтай холбогдох.",
-    id: "contact",
-  },
-];
-
-export const mobileNavItems = [
-  { label: "Нүүр", id: "taniltsuulga" },
-  ...featureGroups.flatMap((group) => [
-    { label: group.title, id: group.id },
-    ...group.items.map((item) => ({ label: `• ${item.label}`, id: item.id })),
-  ]),
-  ...solutionItems.map((item) => ({ label: item.label, id: item.id })),
-  { label: "Үнийн санал", id: "pricing" },
-  ...whyItems.map((item) => ({ label: item.label, id: item.id })),
-  ...resourceItems.map((item) => ({ label: item.label, id: item.id })),
-  { label: "Төлбөр төлөх", id: "make-payment" },
-  { label: "Нэвтрэх", id: "login" },
-  { label: "Бүртгүүлэх", id: "sign-up" },
-];
-
 interface HeaderProps {
   opened: boolean;
   toggle: () => void;
   scrollTo: (id: string) => void;
+}
+
+function useSolidColors() {
+  const colorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
+  const isDark = colorScheme === "dark";
+
+  return {
+    isDark,
+    headerBg: isDark ? "#101113" : "#ffffff",
+    panelBg: isDark ? "#101113" : "#ffffff",
+    borderColor: isDark ? "rgba(45, 212, 191, 0.45)" : "rgba(18, 184, 134, 0.42)",
+    shadow: isDark ? "0 24px 80px rgba(0,0,0,0.75)" : "0 24px 80px rgba(0,0,0,0.16)",
+  };
 }
 
 function MenuLink({
@@ -265,10 +76,7 @@ function NavDropdown({
   children: ReactNode;
   width?: number;
 }) {
-  const colorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
-  const isDark = colorScheme === "dark";
-  const dropdownBg = isDark ? "#101113" : "#ffffff";
-  const dropdownBorder = isDark ? "rgba(45, 212, 191, 0.55)" : "rgba(18, 184, 134, 0.55)";
+  const { panelBg, borderColor, shadow } = useSolidColors();
 
   return (
     <Menu
@@ -302,15 +110,13 @@ function NavDropdown({
         p={16}
         style={{
           width: `min(${width}px, calc(100vw - 32px))`,
-          background: dropdownBg,
-          backgroundColor: dropdownBg,
-          backgroundImage: "none",
+          backgroundColor: panelBg,
           opacity: 1,
           backdropFilter: "none",
           WebkitBackdropFilter: "none",
-          border: `1px solid ${dropdownBorder}`,
+          border: `1px solid ${borderColor}`,
           borderRadius: 18,
-          boxShadow: isDark ? "0 28px 90px rgba(0,0,0,0.85)" : "0 28px 90px rgba(0,0,0,0.24)",
+          boxShadow: shadow,
           zIndex: 200000,
           overflow: "hidden",
         }}
@@ -321,10 +127,288 @@ function NavDropdown({
   );
 }
 
+function BurgerButton({ opened, onClick }: { opened: boolean; onClick: () => void }) {
+  const { isDark, borderColor } = useSolidColors();
+  const lineColor = isDark ? "#ffffff" : "#111827";
+
+  return (
+    <button
+      type="button"
+      aria-label={opened ? "Цэс хаах" : "Цэс нээх"}
+      aria-expanded={opened}
+      onClick={onClick}
+      style={{
+        width: 44,
+        height: 44,
+        minWidth: 44,
+        borderRadius: 999,
+        border: `1px solid ${borderColor}`,
+        backgroundColor: isDark ? "#101113" : "#ffffff",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 5,
+        flexShrink: 0,
+        padding: 0,
+        boxShadow: isDark ? "0 8px 22px rgba(0,0,0,0.35)" : "0 8px 22px rgba(0,0,0,0.08)",
+      }}
+    >
+      <span
+        style={{
+          display: "block",
+          width: 19,
+          height: 2,
+          borderRadius: 99,
+          backgroundColor: lineColor,
+          transform: opened ? "translateY(7px) rotate(45deg)" : "translateY(0) rotate(0deg)",
+          transition: "transform 0.18s ease, background-color 0.18s ease",
+        }}
+      />
+      <span
+        style={{
+          display: "block",
+          width: 19,
+          height: 2,
+          borderRadius: 99,
+          backgroundColor: lineColor,
+          opacity: opened ? 0 : 1,
+          transform: opened ? "scaleX(0)" : "scaleX(1)",
+          transition: "opacity 0.18s ease, transform 0.18s ease, background-color 0.18s ease",
+        }}
+      />
+      <span
+        style={{
+          display: "block",
+          width: 19,
+          height: 2,
+          borderRadius: 99,
+          backgroundColor: lineColor,
+          transform: opened ? "translateY(-7px) rotate(-45deg)" : "translateY(0) rotate(0deg)",
+          transition: "transform 0.18s ease, background-color 0.18s ease",
+        }}
+      />
+    </button>
+  );
+}
+
+function MobileNavButton({
+  label,
+  id,
+  description,
+  go,
+  strong = false,
+}: {
+  label: string;
+  id: string;
+  description?: string;
+  go: (id: string) => void;
+  strong?: boolean;
+}) {
+  return (
+    <Button
+      variant={strong ? "light" : "subtle"}
+      color="brand"
+      fullWidth
+      justify="flex-start"
+      radius="md"
+      h="auto"
+      py={10}
+      px={12}
+      onClick={() => go(id)}
+      styles={{
+        root: {
+          color: strong ? "var(--mantine-color-brand-7)" : "var(--text-primary)",
+          border: strong ? "1px solid var(--mantine-color-brand-3)" : "none",
+        },
+        label: { width: "100%" },
+      }}
+    >
+      <Stack gap={2} align="flex-start" w="100%">
+        <Text fw={800} size="sm">
+          {label}
+        </Text>
+        {description && (
+          <Text size="xs" style={{ color: "var(--text-secondary)", lineHeight: 1.35 }}>
+            {description}
+          </Text>
+        )}
+      </Stack>
+    </Button>
+  );
+}
+
+function MobileMenu({ opened, scrollTo }: { opened: boolean; scrollTo: (id: string) => void }) {
+  const { panelBg, borderColor, shadow } = useSolidColors();
+
+  if (!opened) return null;
+
+  const go = (id: string) => scrollTo(id);
+
+  return (
+    <Box
+      style={{
+        position: "fixed",
+        top: 70,
+        left: 0,
+        right: 0,
+        width: "100vw",
+        height: "calc(100dvh - 70px)",
+        backgroundColor: panelBg,
+        borderTop: `1px solid ${borderColor}`,
+        boxShadow: shadow,
+        zIndex: 199999,
+        overflow: "hidden",
+      }}
+    >
+      <ScrollArea h="100%" type="auto" offsetScrollbars>
+        <Stack gap={16} px={18} py={18} maw={720} mx="auto" w="100%">
+          <SimpleGrid cols={3} spacing={8}>
+            <Button radius="xl" color="brand" variant="light" onClick={() => go("make-payment")}>
+              Төлбөр
+            </Button>
+            <Button radius="xl" color="brand" variant="outline" onClick={() => go("login")}>
+              Нэвтрэх
+            </Button>
+            <Button radius="xl" color="brand" onClick={() => go("sign-up")}>
+              Бүртгүүлэх
+            </Button>
+          </SimpleGrid>
+
+          <Accordion
+            multiple
+            defaultValue={["features"]}
+            variant="separated"
+            radius="lg"
+            styles={{
+              item: {
+                backgroundColor: panelBg,
+                border: `1px solid ${borderColor}`,
+              },
+              control: {
+                color: "var(--text-primary)",
+                fontWeight: 900,
+                fontSize: 15,
+              },
+              panel: { color: "var(--text-primary)" },
+              chevron: { color: "var(--text-primary)" },
+            }}
+          >
+            <Accordion.Item value="features">
+              <Accordion.Control>Боломжууд</Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap={18}>
+                  {featureGroups.map((group) => (
+                    <Stack key={group.id} gap={8}>
+                      <Text
+                        fw={900}
+                        size="xs"
+                        c="brand"
+                        tt="uppercase"
+                        style={{ letterSpacing: "0.08em", cursor: "pointer" }}
+                        onClick={() => go(group.id)}
+                      >
+                        {group.title}
+                      </Text>
+                      <Stack gap={6}>
+                        {group.items.map((item) => (
+                          <MobileNavButton
+                            key={item.id}
+                            label={item.label}
+                            id={item.id}
+                            description={item.description}
+                            go={go}
+                          />
+                        ))}
+                      </Stack>
+                    </Stack>
+                  ))}
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="solutions">
+              <Accordion.Control>Шийдлүүд</Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap={6}>
+                  {solutionItems.map((item) => (
+                    <MobileNavButton
+                      key={item.id}
+                      label={item.label}
+                      id={item.id}
+                      description={item.description}
+                      go={go}
+                    />
+                  ))}
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="pricing">
+              <Accordion.Control>Үнийн санал</Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap={6}>
+                  <MobileNavButton
+                    label="Үнийн тооцоолуур"
+                    id="pricing"
+                    description="Хотхоны мэдээллээ оруулаад үнийн санал харах"
+                    go={go}
+                    strong
+                  />
+                  <MobileNavButton
+                    label="Багцууд"
+                    id="plans"
+                    description="Жижиг, дунд, том СӨХ-д тохирсон багцууд"
+                    go={go}
+                  />
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="why">
+              <Accordion.Control>Яагаад Монсөх?</Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap={6}>
+                  {whyItems.map((item) => (
+                    <MobileNavButton
+                      key={item.id}
+                      label={item.label}
+                      id={item.id}
+                      description={item.description}
+                      go={go}
+                    />
+                  ))}
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+
+            <Accordion.Item value="resources">
+              <Accordion.Control>Нөөц</Accordion.Control>
+              <Accordion.Panel>
+                <Stack gap={6}>
+                  {resourceItems.map((item) => (
+                    <MobileNavButton
+                      key={item.id}
+                      label={item.label}
+                      id={item.id}
+                      description={item.description}
+                      go={go}
+                    />
+                  ))}
+                </Stack>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+        </Stack>
+      </ScrollArea>
+    </Box>
+  );
+}
+
 export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
   const isMobile = useMediaQuery("(max-width: 1160px)");
-  const colorScheme = useComputedColorScheme("light", { getInitialValueInEffect: true });
-  const isDark = colorScheme === "dark";
+  const { headerBg, shadow } = useSolidColors();
 
   const navButton = {
     color: "var(--text-primary)",
@@ -334,163 +418,163 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
   };
 
   return (
-    <AppShell.Header
-      withBorder={false}
-      style={{
-        background: isDark ? "#101113" : "#ffffff",
-        backgroundColor: isDark ? "#101113" : "#ffffff",
-        backgroundImage: "none",
-        opacity: 1,
-        backdropFilter: "none",
-        WebkitBackdropFilter: "none",
-        borderBottom: "1px solid var(--mantine-color-brand-4)",
-        boxShadow: isDark ? "0 8px 28px rgba(0,0,0,0.45)" : "0 8px 28px rgba(0,0,0,0.08)",
-        zIndex: 200000,
-        isolation: "isolate",
-      }}
-    >
-      <Flex h="100%" px={isMobile ? 16 : 40} justify="space-between" align="center" wrap="nowrap">
-        <Image
-          src="/full-logo-dark-mode.png"
-          w={150}
-          h={56}
-          fit="contain"
-          style={{ cursor: "pointer" }}
-          onClick={() => scrollTo("taniltsuulga")}
-        />
+    <>
+      <AppShell.Header
+        withBorder={false}
+        style={{
+          width: "100vw",
+          left: 0,
+          right: 0,
+          backgroundColor: headerBg,
+          opacity: 1,
+          backdropFilter: "none",
+          WebkitBackdropFilter: "none",
+          borderBottom: "1px solid var(--mantine-color-brand-4)",
+          boxShadow: shadow,
+          zIndex: 200000,
+          isolation: "isolate",
+        }}
+      >
+        <Flex
+          h="100%"
+          w="100%"
+          maw={1280}
+          mx="auto"
+          px={{ base: 14, md: 40 }}
+          justify="space-between"
+          align="center"
+          wrap="nowrap"
+        >
+          <Image
+            src="/full-logo-dark-mode.png"
+            w={isMobile ? 116 : 150}
+            h={isMobile ? 46 : 56}
+            fit="contain"
+            style={{ cursor: "pointer", flexShrink: 0 }}
+            onClick={() => scrollTo("taniltsuulga")}
+          />
 
-        {isMobile ? (
-          <Group gap={8} wrap="nowrap" style={{ flexShrink: 0 }}>
-            <Button
-              size="sm"
-              radius="xl"
-              color="brand"
-              fw={800}
-              onClick={() => scrollTo("sign-up")}
-            >
-              Бүртгүүлэх
-            </Button>
-            <ThemeToggle />
-            <Burger
-              opened={opened}
-              onClick={toggle}
-              aria-label={opened ? "Цэс хаах" : "Цэс нээх"}
-              color="var(--text-primary)"
-            />
-          </Group>
-        ) : (
-          <>
-            <Group gap={4} wrap="nowrap">
-              <NavDropdown label="Боломжууд" width={920}>
-                <SimpleGrid cols={4} spacing={18}>
-                  {featureGroups.map((group) => (
-                    <Stack key={group.title} gap={6}>
-                      <Text
-                        fw={800}
-                        size="xs"
-                        tt="uppercase"
-                        c="brand"
-                        style={{ letterSpacing: "0.08em", cursor: "pointer" }}
-                        onClick={() => scrollTo(group.id)}
-                      >
-                        {group.title}
-                      </Text>
-
-                      {group.items.map((item) => (
-                        <MenuLink
-                          key={item.id}
-                          label={item.label}
-                          description={item.description}
-                          onClick={() => scrollTo(item.id)}
-                        />
-                      ))}
-
-                      <Divider my={4} />
-                      <MenuLink
-                        label={group.viewAllLabel}
-                        description="Бүгдийг харах"
-                        onClick={() => scrollTo(group.id)}
-                      />
-                    </Stack>
-                  ))}
-                </SimpleGrid>
-              </NavDropdown>
-
-              <NavDropdown label="Шийдлүүд" width={390}>
-                <Stack gap={6}>
-                  {solutionItems.map((item) => (
-                    <MenuLink
-                      key={item.id}
-                      label={item.label}
-                      description={item.description}
-                      onClick={() => scrollTo(item.id)}
-                    />
-                  ))}
-                </Stack>
-              </NavDropdown>
-
-              <Button
-                variant="subtle"
-                radius="xl"
-                styles={{ root: navButton }}
-                onClick={() => scrollTo("pricing")}
-              >
-                Үнийн санал
-              </Button>
-
-              <NavDropdown label="Яагаад Монсөх?" width={420}>
-                <Stack gap={6}>
-                  {whyItems.map((item) => (
-                    <MenuLink
-                      key={item.id}
-                      label={item.label}
-                      description={item.description}
-                      onClick={() => scrollTo(item.id)}
-                    />
-                  ))}
-                </Stack>
-              </NavDropdown>
-
-              <NavDropdown label="Нөөц" width={420}>
-                <Stack gap={6}>
-                  {resourceItems.map((item) => (
-                    <MenuLink
-                      key={item.id}
-                      label={item.label}
-                      description={item.description}
-                      onClick={() => scrollTo(item.id)}
-                    />
-                  ))}
-                </Stack>
-              </NavDropdown>
-            </Group>
-
-            <Group gap="sm" wrap="nowrap">
-              <Button
-                variant="subtle"
-                radius="xl"
-                styles={{ root: { ...navButton, color: "var(--mantine-color-brand-7)" } }}
-                onClick={() => scrollTo("make-payment")}
-              >
-                Төлбөр төлөх
-              </Button>
-              <Button
-                variant="outline"
-                radius="xl"
-                color="brand"
-                fw={700}
-                onClick={() => scrollTo("login")}
-              >
-                Нэвтрэх
-              </Button>
-              <Button radius="xl" color="brand" fw={700} onClick={() => scrollTo("sign-up")}>
-                Бүртгүүлэх
-              </Button>
+          {isMobile ? (
+            <Group gap={8} wrap="nowrap" style={{ flexShrink: 0 }}>
               <ThemeToggle />
+              <BurgerButton opened={opened} onClick={toggle} />
             </Group>
-          </>
-        )}
-      </Flex>
-    </AppShell.Header>
+          ) : (
+            <>
+              <Group gap={4} wrap="nowrap">
+                <NavDropdown label="Боломжууд" width={920}>
+                  <SimpleGrid cols={4} spacing={18}>
+                    {featureGroups.map((group) => (
+                      <Stack key={group.title} gap={6}>
+                        <Text
+                          fw={800}
+                          size="xs"
+                          tt="uppercase"
+                          c="brand"
+                          style={{ letterSpacing: "0.08em", cursor: "pointer" }}
+                          onClick={() => scrollTo(group.id)}
+                        >
+                          {group.title}
+                        </Text>
+
+                        {group.items.map((item) => (
+                          <MenuLink
+                            key={item.id}
+                            label={item.label}
+                            description={item.description}
+                            onClick={() => scrollTo(item.id)}
+                          />
+                        ))}
+
+                        <Divider my={4} />
+                        <MenuLink
+                          label={group.viewAllLabel}
+                          description="Бүгдийг харах"
+                          onClick={() => scrollTo(group.id)}
+                        />
+                      </Stack>
+                    ))}
+                  </SimpleGrid>
+                </NavDropdown>
+
+                <NavDropdown label="Шийдлүүд" width={390}>
+                  <Stack gap={6}>
+                    {solutionItems.map((item) => (
+                      <MenuLink
+                        key={item.id}
+                        label={item.label}
+                        description={item.description}
+                        onClick={() => scrollTo(item.id)}
+                      />
+                    ))}
+                  </Stack>
+                </NavDropdown>
+
+                <Button
+                  variant="subtle"
+                  radius="xl"
+                  styles={{ root: navButton }}
+                  onClick={() => scrollTo("pricing")}
+                >
+                  Үнийн санал
+                </Button>
+
+                <NavDropdown label="Яагаад Монсөх?" width={420}>
+                  <Stack gap={6}>
+                    {whyItems.map((item) => (
+                      <MenuLink
+                        key={item.id}
+                        label={item.label}
+                        description={item.description}
+                        onClick={() => scrollTo(item.id)}
+                      />
+                    ))}
+                  </Stack>
+                </NavDropdown>
+
+                <NavDropdown label="Нөөц" width={420}>
+                  <Stack gap={6}>
+                    {resourceItems.map((item) => (
+                      <MenuLink
+                        key={item.id}
+                        label={item.label}
+                        description={item.description}
+                        onClick={() => scrollTo(item.id)}
+                      />
+                    ))}
+                  </Stack>
+                </NavDropdown>
+              </Group>
+
+              <Group gap="sm" wrap="nowrap">
+                <Button
+                  variant="subtle"
+                  radius="xl"
+                  styles={{ root: { ...navButton, color: "var(--mantine-color-brand-7)" } }}
+                  onClick={() => scrollTo("make-payment")}
+                >
+                  Төлбөр төлөх
+                </Button>
+                <Button
+                  variant="outline"
+                  radius="xl"
+                  color="brand"
+                  fw={700}
+                  onClick={() => scrollTo("login")}
+                >
+                  Нэвтрэх
+                </Button>
+                <Button radius="xl" color="brand" fw={700} onClick={() => scrollTo("sign-up")}>
+                  Бүртгүүлэх
+                </Button>
+                <ThemeToggle />
+              </Group>
+            </>
+          )}
+        </Flex>
+      </AppShell.Header>
+
+      {isMobile && <MobileMenu opened={opened} scrollTo={scrollTo} />}
+    </>
   );
 }
