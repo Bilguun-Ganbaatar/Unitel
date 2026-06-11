@@ -2,7 +2,17 @@
 
 import { Carousel } from "@mantine/carousel";
 import "@mantine/carousel/styles.css";
-import { ActionIcon, Box, Button, Flex, Group, Image, Stack, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Flex,
+  Group,
+  Image,
+  Stack,
+  Text,
+  useComputedColorScheme,
+} from "@mantine/core";
 import { useIntersection, useMediaQuery } from "@mantine/hooks";
 import AutoScroll from "embla-carousel-auto-scroll";
 
@@ -18,6 +28,16 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Introduction() {
   const isMobile = useMediaQuery("(max-width: 600px)");
+
+  const colorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
+  const isDark = colorScheme === "dark";
+
+  const panelBg = isDark ? "rgba(0, 0, 0, 0.46)" : "rgba(255, 255, 255, 0.68)";
+  const panelBorder = isDark ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.55)";
+  const textColor = isDark ? "#ffffff" : "#111111";
+  const mutedTextColor = isDark ? "rgba(255,255,255,0.86)" : "rgba(0,0,0,0.78)";
 
   const { ref: heroRef, entry: heroEntry } = useIntersection({
     threshold: 0.2,
@@ -45,7 +65,7 @@ export default function Introduction() {
   }, [gridEntry?.isIntersecting]);
 
   return (
-    <Stack>
+    <Stack gap={0}>
       <Group
         ref={heroRef}
         justify="center"
@@ -59,16 +79,35 @@ export default function Introduction() {
       >
         <Flex
           w="100%"
+          maw={1120}
+          mx="auto"
           justify="space-between"
           align="center"
           gap="xl"
           direction={{ base: "column", md: "row" }}
         >
-          <Stack w={{ base: "100%", md: "50%" }}>
+          <Stack
+            w={{ base: "100%", md: "50%" }}
+            p={{ base: 18, md: 24 }}
+            style={{
+              borderRadius: 24,
+              background: panelBg,
+              border: `1px solid ${panelBorder}`,
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              boxShadow: isDark ? "0 18px 50px rgba(0,0,0,0.36)" : "0 18px 50px rgba(0,0,0,0.10)",
+            }}
+          >
             <Text
-              fz={{ base: 28, sm: 34, md: 46 }}
-              fw={600}
-              style={{ lineHeight: 1.15, color: "var(--text-primary)" }}
+              fz={{ base: 30, sm: 36, md: 48 }}
+              fw={800}
+              style={{
+                lineHeight: 1.12,
+                color: textColor,
+                textShadow: isDark
+                  ? "0 3px 14px rgba(0,0,0,0.45)"
+                  : "0 2px 12px rgba(255,255,255,0.45)",
+              }}
             >
               Таны{" "}
               <Text component="span" c="brand" inherit>
@@ -77,19 +116,46 @@ export default function Introduction() {
               хөрш
             </Text>
 
-            <Text size="md" style={{ lineHeight: 1.7, color: "var(--text-primary)" }}>
+            <Text
+              size="md"
+              style={{
+                lineHeight: 1.7,
+                color: mutedTextColor,
+                textShadow: isDark ? "0 2px 10px rgba(0,0,0,0.35)" : "none",
+              }}
+            >
               Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
               харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
             </Text>
           </Stack>
 
-          <Stack w={{ base: "100%", md: "45%" }}>
+          <Stack
+            w={{ base: "100%", md: "45%" }}
+            p={{ base: 16, md: 20 }}
+            gap="sm"
+            style={{
+              borderRadius: 24,
+              background: panelBg,
+              border: `1px solid ${panelBorder}`,
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              boxShadow: isDark ? "0 18px 50px rgba(0,0,0,0.32)" : "0 18px 50px rgba(0,0,0,0.08)",
+            }}
+          >
             <Button
               size="md"
               radius={20}
               variant="outline"
               fullWidth
               leftSection={<IconBrandApple size={17} />}
+              styles={{
+                root: {
+                  color: isDark ? "#ffffff" : "#12b886",
+                  borderColor: isDark ? "rgba(255,255,255,0.72)" : "#12b886",
+                  background: isDark ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.35)",
+                  fontWeight: 700,
+                },
+              }}
             >
               iOS татах
             </Button>
@@ -100,11 +166,16 @@ export default function Introduction() {
               variant="filled"
               fullWidth
               leftSection={<IconBrandAndroid size={17} />}
+              styles={{
+                root: {
+                  fontWeight: 700,
+                },
+              }}
             >
               Android татах
             </Button>
 
-            <Group justify="center" gap="sm">
+            <Group justify="center" gap="sm" mt={4}>
               <ActionIcon
                 size="lg"
                 variant="filled"
@@ -112,6 +183,7 @@ export default function Introduction() {
                 component="a"
                 href="https://www.facebook.com/khalmontrade"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <IconBrandFacebook />
               </ActionIcon>
@@ -130,9 +202,6 @@ export default function Introduction() {
                     color: "white",
                     border: 0,
                     transition: "0.2s",
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                    },
                   },
                 }}
               >
@@ -146,6 +215,7 @@ export default function Introduction() {
                 component="a"
                 href="https://www.youtube.com/@byambadelgerodgerel195"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <IconBrandYoutube />
               </ActionIcon>
@@ -158,13 +228,33 @@ export default function Introduction() {
         ref={gridRef}
         px={20}
         pb={40}
+        maw={1120}
+        w="100%"
+        mx="auto"
         style={{
           opacity: gridVisible ? 1 : 0,
           transform: gridVisible ? "translateY(0)" : "translateY(40px)",
           transition: "0.6s ease",
         }}
       >
-        <Text fz={20} fw={700} mb="xs">
+        <Text
+          fz={20}
+          fw={800}
+          mb="xs"
+          px={14}
+          py={8}
+          style={{
+            display: "inline-block",
+            width: "fit-content",
+            borderRadius: 14,
+            background: panelBg,
+            border: `1px solid ${panelBorder}`,
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            color: textColor,
+            textShadow: isDark ? "0 2px 10px rgba(0,0,0,0.35)" : "none",
+          }}
+        >
           Нэгдсэн{" "}
           <Text component="span" c="brand" inherit>
             Байр, Хотхонууд
@@ -175,6 +265,7 @@ export default function Introduction() {
           style={{
             width: "100vw",
             marginLeft: "calc(50% - 50vw)",
+            overflow: "hidden",
           }}
         >
           <Carousel
@@ -196,17 +287,24 @@ export default function Introduction() {
                 <Button
                   bg="transparent"
                   h={100}
-                  w="100%"
+                  w={isMobile ? 120 : 145}
                   radius={20}
                   p={0}
-                  style={{ border: "none" }}
+                  style={{
+                    border: "none",
+                    boxShadow: isDark
+                      ? "0 12px 28px rgba(0,0,0,0.45)"
+                      : "0 12px 28px rgba(0,0,0,0.18)",
+                  }}
                 >
                   <Image
                     src="/s/apartments.png"
                     w="100%"
                     h={100}
                     fit="cover"
-                    style={{ borderRadius: 20 }}
+                    style={{
+                      borderRadius: 20,
+                    }}
                   />
                 </Button>
               </Carousel.Slide>
@@ -216,24 +314,23 @@ export default function Introduction() {
       </Stack>
 
       <Box
+        maw={1120}
+        w="100%"
+        mx="auto"
+        px={20}
+        pb={40}
         style={{
           position: "relative",
-          width: isMobile ? 160 : 200,
-          margin: "0 auto",
+          zIndex: 1,
         }}
       >
-        <Image src="/s/mobile-frame.webp" fit="contain" />
-
         <Image
-          src="/s/screenshot.png"
+          src="/web.png"
+          w="100%"
+          fit="contain"
           style={{
-            position: "absolute",
-            top: "2%",
-            left: "5%",
-            width: "90%",
-            height: "96%",
-            objectFit: "cover",
             borderRadius: isMobile ? 18 : 25,
+            boxShadow: isDark ? "0 18px 60px rgba(0,0,0,0.45)" : "0 18px 60px rgba(0,0,0,0.12)",
           }}
         />
       </Box>
