@@ -42,14 +42,11 @@ export default function Footer() {
             <Text fz={20} fw={600} c="brand">
               Холбоо барих
             </Text>
-            <Link
-              href="mailto:khalmon@gmail.com"
-              style={{ textDecoration: "none", color: brandColor }}
-            >
-              khalmon@gmail.com
+            <Link href="contact@khalmon.mn" style={{ textDecoration: "none", color: brandColor }}>
+              contact@khalmon.mn
             </Link>
-            <Link href="tel:98112882" style={{ textDecoration: "none", color: brandColor }}>
-              98112882
+            <Link href="tel:70112882" style={{ textDecoration: "none", color: brandColor }}>
+              70112882
             </Link>
             <Link
               href="https://maps.app.goo.gl/vYwEZousrsuCbYHV9?g_st=ic"
@@ -84,7 +81,7 @@ export default function Footer() {
           gap={12}
         >
           <Text c="grey" size={isMobile ? "sm" : "md"}>
-            © 2025. Халмон Трейд ХХК
+            © 2026. Халмон Трейд ХХК
           </Text>
           <Group justify="center" gap="sm">
             <ActionIcon
@@ -92,7 +89,7 @@ export default function Footer() {
               variant="filled"
               color="#1877F2"
               component="a"
-              href="https://facebook.com"
+              href="https://www.facebook.com/khalmontrade"
               target="_blank"
             >
               <IconBrandFacebook />
@@ -100,6 +97,10 @@ export default function Footer() {
 
             <ActionIcon
               size="lg"
+              component="a"
+              href="https://www.instagram.com/khalmontrade/"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="filled"
               styles={{
                 root: {
@@ -122,7 +123,7 @@ export default function Footer() {
               variant="filled"
               color="#FF0000"
               component="a"
-              href="https://youtube.com"
+              href="https://www.youtube.com/@byambadelgerodgerel195"
               target="_blank"
             >
               <IconBrandYoutube />

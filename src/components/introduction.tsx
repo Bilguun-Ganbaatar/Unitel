@@ -29,7 +29,12 @@ export default function Introduction() {
   });
   const [gridVisible, setGridVisible] = useState(false);
 
-  const autoScroll = useRef(AutoScroll({ speed: 1 }));
+  const autoScroll = useRef(
+    AutoScroll({
+      speed: 1,
+      startDelay: 0,
+    }),
+  );
 
   useEffect(() => {
     if (heroEntry?.isIntersecting) setHeroVisible(true);
@@ -59,7 +64,6 @@ export default function Introduction() {
           gap="xl"
           direction={{ base: "column", md: "row" }}
         >
-          {/* TEXT */}
           <Stack w={{ base: "100%", md: "50%" }}>
             <Text
               fz={{ base: 28, sm: 34, md: 46 }}
@@ -106,7 +110,7 @@ export default function Introduction() {
                 variant="filled"
                 color="#1877F2"
                 component="a"
-                href="https://facebook.com"
+                href="https://www.facebook.com/khalmontrade"
                 target="_blank"
               >
                 <IconBrandFacebook />
@@ -114,6 +118,10 @@ export default function Introduction() {
 
               <ActionIcon
                 size="lg"
+                component="a"
+                href="https://www.instagram.com/khalmontrade/"
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="filled"
                 styles={{
                   root: {
@@ -136,7 +144,7 @@ export default function Introduction() {
                 variant="filled"
                 color="#FF0000"
                 component="a"
-                href="https://youtube.com"
+                href="https://www.youtube.com/@byambadelgerodgerel195"
                 target="_blank"
               >
                 <IconBrandYoutube />
