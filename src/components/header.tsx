@@ -349,7 +349,7 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
         isolation: "isolate",
       }}
     >
-      <Flex h="100%" px={isMobile ? 20 : 40} justify="space-between" align="center" wrap="nowrap">
+      <Flex h="100%" px={isMobile ? 16 : 40} justify="space-between" align="center" wrap="nowrap">
         <Image
           src="/full-logo-dark-mode.png"
           w={150}
@@ -360,9 +360,23 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
         />
 
         {isMobile ? (
-          <Group gap="sm" wrap="nowrap">
+          <Group gap={8} wrap="nowrap" style={{ flexShrink: 0 }}>
+            <Button
+              size="sm"
+              radius="xl"
+              color="brand"
+              fw={800}
+              onClick={() => scrollTo("sign-up")}
+            >
+              Бүртгүүлэх
+            </Button>
             <ThemeToggle />
-            <Burger opened={opened} onClick={toggle} />
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              aria-label={opened ? "Цэс хаах" : "Цэс нээх"}
+              color="var(--text-primary)"
+            />
           </Group>
         ) : (
           <>

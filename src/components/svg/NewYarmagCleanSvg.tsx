@@ -1,6 +1,9 @@
 "use client";
 
+<<<<<<< HEAD
 import { useComputedColorScheme } from "@mantine/core";
+=======
+>>>>>>> 4f91e76 (sync)
 import type { SVGProps } from "react";
 
 type NewYarmagCleanSvgProps = SVGProps<SVGSVGElement> & {
