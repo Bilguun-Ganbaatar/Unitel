@@ -109,10 +109,9 @@ export default function Introduction() {
                   : "0 2px 12px rgba(255,255,255,0.45)",
               }}
             >
-              {" "}
               <Text component="span" c="brand" inherit>
                 Технологийн шийдэл, Тогтвортой хөгжил
-              </Text>{" "}
+              </Text>
             </Text>
 
             <Text
@@ -123,35 +122,21 @@ export default function Introduction() {
                 textShadow: isDark ? "0 2px 10px rgba(0,0,0,0.35)" : "none",
               }}
             >
-              Монсөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
+              Мон-Сөх нь хотхонд суурилсан сошиал платформ юм. Гэр болон түүнтэй холбоотой бүх
               харилцааг нэгтгэсэн Монгол сошиал сүлжээнд тавтай морил.
             </Text>
           </Stack>
 
-          <Stack
-            w={{ base: "100%", md: "45%" }}
-            p={{ base: 16, md: 20 }}
-            gap="sm"
-            style={{
-              borderRadius: 24,
-              background: panelBg,
-              border: `1px solid ${panelBorder}`,
-              backdropFilter: "blur(8px)",
-              WebkitBackdropFilter: "blur(8px)",
-              boxShadow: isDark ? "0 18px 50px rgba(0,0,0,0.32)" : "0 18px 50px rgba(0,0,0,0.08)",
-            }}
-          >
+          <Stack w={{ base: "100%", md: "45%" }} p={{ base: 16, md: 20 }} gap="sm">
             <Button
               size="md"
               radius={20}
-              variant="outline"
+              variant="light"
+              color="brand"
               fullWidth
               leftSection={<IconBrandApple size={17} />}
               styles={{
                 root: {
-                  color: isDark ? "#ffffff" : "#12b886",
-                  borderColor: isDark ? "rgba(255,255,255,0.72)" : "#12b886",
-                  background: isDark ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.35)",
                   fontWeight: 700,
                 },
               }}

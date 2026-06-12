@@ -4,6 +4,7 @@ export type MenuItem = {
   label: string;
   description: string;
   id: string;
+  image?: string;
 };
 
 export type FeatureGroup = {
@@ -22,32 +23,38 @@ export const featureGroups: FeatureGroup[] = [
         label: "Нэхэмжлэл & төлбөр",
         description: "Төлбөрөө хурдан, хялбар авах",
         id: "feature-invoicing-payments",
+        image: "/images/finance/payment_preview.jpg",
       },
       {
         label: "Нягтлан бодох бүртгэл",
         description: "Энгийн, найдвартай санхүүгийн бүртгэл",
         id: "feature-accounting",
+        image: "/images/finance/accounting.jpeg",
       },
       {
         label: "Төсөв & тайлан",
         description: "Удирдах зөвлөлд зориулсан мэргэжлийн тайлан",
         id: "feature-budgets-reports",
+        image: "/images/finance/report.webp",
       },
       {
         label: "Банкны холболт",
         description: "Гүйлгээ гараар шивэх ажлыг багасгана",
         id: "feature-bank-integrations",
+        image: "/images/finance/bank.jpg",
       },
       {
         label: "Шилэн данс",
         description: "Оршин суугчдад нээлттэй ил тод систем",
         id: "feature-transparent-account",
+        image: "/images/finance/financial-transparency.jpg",
       },
       {
         label: "Санхүүгийн тооцоолол болон төсвийн программ",
         description:
           "Хүний ажлыг хөнгөвчилж тайлан тооцоо төсвийн нэгтгэлийг хурдан шуурхай гаргана",
         id: "feature-bookkeeping-services",
+        image: "/images/finance/software.avif",
       },
     ],
     viewAllLabel: "Санхүүгийн боломж",
@@ -60,31 +67,37 @@ export const featureGroups: FeatureGroup[] = [
         label: "Нийтэд мэдээлэл хүргэх",
         description: "Мессеж, имэйл, дуудлагаар оршин суугчдад хүрэх",
         id: "feature-mass-communication",
+        image: "/images/communication/mass.webp",
       },
       {
         label: "Мэдэгдлийн булан",
         description: "Зар, мэдэгдлийг нэг дор эмх цэгцтэй хүргэх",
         id: "feature-mailroom",
+        image: "/images/communication/board.webp",
       },
       {
         label: "Хэлэлцүүлгийн самбар",
         description: "Хотхоны дотоод форум, санал солилцоо",
         id: "feature-message-boards",
+        image: "/images/communication/discussion.webp",
       },
       {
         label: "Вэб хуудас бүтээгч",
         description: "СӨХ, хотхонд зориулсан танилцуулга вэб хуудас",
         id: "feature-website-builder",
+        image: "/images/communication/web.webp",
       },
       {
         label: "Зөрчил бүртгэл",
         description: "Дотоод журам, зөрчлийг хялбар бүртгэж хянах",
         id: "feature-violations",
+        image: "/images/communication/violation.jpeg",
       },
       {
         label: "Баримт бичгийн сан",
         description: "Гэрээ, дүрэм, тайлангаа хадгалж хуваалцах",
         id: "feature-document-storage",
+        image: "/images/communication/document.jpg",
       },
     ],
     viewAllLabel: "Харилцаа холбооны бүх боломж",
@@ -97,21 +110,25 @@ export const featureGroups: FeatureGroup[] = [
         label: "Зогсоолын менежмент",
         description: "Өөрийн машин болон зочны машин нээлттэй нэвтрүүлэх",
         id: "feature-parking",
+        image: "/images/management/parking.png",
       },
       {
         label: "Гражын зогсоол түрээслэх",
         description: "Та өөрийн өмчийн гражын зогсоолыг түрээслэх боломжтой",
         id: "feature-rent-garage",
+        image: "/images/management/garage.jpg",
       },
       {
         label: "Конторын төлбөр",
         description: "Ус дулааны үйлчилгээ үзүүлдэг байгууллагын төлбөр төлөх боломжтой",
         id: "feature-kontor",
+        image: "/images/management/utility.jpg",
       },
       {
         label: "Дундын өмч",
         description: "Оршин суугчдын амьдардаг орчны хариуцлагыг нэмэгдүүлэх",
         id: "feature-common-property",
+        image: "/images/management/property.png",
       },
     ],
     viewAllLabel: "Удирдлагын бүх боломж",
@@ -164,7 +181,7 @@ export const featureGroups: FeatureGroup[] = [
 
 export const solutionItems: MenuItem[] = [
   {
-    label: "Өөрөө удирддаг СӨХ",
+    label: "СӨХ",
     description: "Удирдах зөвлөл, СӨХ-ийн ажилтнуудад зориулсан өдөр тутмын удирдлага",
     id: "solution-self-managed",
   },
@@ -173,12 +190,23 @@ export const solutionItems: MenuItem[] = [
     description: "Олон хотхон, олон объект удирддаг байгууллагад зориулсан шийдэл",
     id: "solution-property-management",
   },
+  {
+    label: "Төлбөртэй зогсоол",
+    description: "Зогсоолын төлбөр, нэвтрэлт, ашиглалт, орлогыг нэг дор удирдах шийдэл",
+    id: "solution-parking",
+  },
+  {
+    label: "Аж ахуй нэгж",
+    description:
+      "очид буудал, эмнэлэг, оффис, үйлчилгээний байгууллага зэрэг олон өрөө, нэгжтэй байгууллагын төлбөр, засвар үйлчилгээ, мэдээлэл хүргэлт, дотоод удирдлагыг нэг дор төвлөрүүлэх шийдэл",
+    id: "solution-companies",
+  },
 ];
 
 export const whyItems: MenuItem[] = [
   {
     label: "Бидний тухай",
-    description: "Монсөхийг Монгол хотхон, СӨХ-ийн бодит хэрэгцээнд зориулж хөгжүүлсэн.",
+    description: "Мон-Сөхийг Монгол хотхон, СӨХ-ийн бодит хэрэгцээнд зориулж хөгжүүлсэн.",
     id: "why-about-us",
   },
   {
@@ -193,7 +221,7 @@ export const whyItems: MenuItem[] = [
   },
   {
     label: "Хэвлэл мэдээлэл",
-    description: "Монсөхийн тухай мэдээ, танилцуулга, шинэчлэлүүд.",
+    description: "Мон-Сөхийн тухай мэдээ, танилцуулга, шинэчлэлүүд.",
     id: "why-press",
   },
 ];
@@ -228,7 +256,7 @@ export const resourceItems: MenuItem[] = [
 
 export const faqData = [
   {
-    value: "Монсөхийг ашиглаж эхлэхэд ямар мэдээлэл хэрэгтэй вэ?",
+    value: "Мон-Сөхийг ашиглаж эхлэхэд ямар мэдээлэл хэрэгтэй вэ?",
     description:
       "Объектын мэдээлэл, өрх/өмчлөгчийн мэдээлэл, СӨХ-ийн ажилтнууд, төлбөрийн ангилал, эхний үлдэгдэл зэрэг үндсэн мэдээллээр бүртгэл үүсгэнэ.",
   },

@@ -10,7 +10,7 @@ const libreFranklin = Libre_Franklin({
 });
 
 export const metadata: Metadata = {
-  title: "Монсөх",
+  title: "Мон-Сөх",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

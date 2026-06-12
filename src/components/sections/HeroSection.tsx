@@ -21,10 +21,12 @@ export default function HeroSection() {
       <NewYarmagCleanSvg
         style={{
           position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
+          inset: -20,
+          width: "calc(100% + 40px)",
+          height: "calc(100% + 40px)",
           zIndex: 0,
+          filter: "blur(5px)",
+          transform: "scale(1.03)",
         }}
       />
 

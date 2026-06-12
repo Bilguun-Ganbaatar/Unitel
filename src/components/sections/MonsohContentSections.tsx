@@ -16,7 +16,7 @@ export function FeatureSections() {
     <Stack id="features" py={80} gap={70} style={sectionAnchor}>
       <SectionHeader
         eyebrow="Боломжууд"
-        title="Монсөхийн боломжууд"
+        title="Мон-Сөхийн боломжууд"
         description="Санхүү, харилцаа холбоо, удирдлага, бүтээгдэхүүн гэсэн үндсэн бүлгүүдээр СӨХ болон хотхоны өдөр тутмын ажлыг нэг дор төвлөрүүлнэ."
       />
 
@@ -48,6 +48,7 @@ export function FeatureSections() {
                 label={item.label}
                 description={item.description}
                 badge={group.title}
+                image={item.image}
               />
             ))}
           </SimpleGrid>
@@ -80,7 +81,7 @@ export function WhyMonsohSection() {
     <Stack id="why-monsoh" py={70} px={20} gap={28} style={sectionAnchor}>
       <Divider color="var(--mantine-color-brand-4)" />
       <SectionHeader
-        eyebrow="Яагаад Монсөх?"
+        eyebrow="Яагаад Мон-Сөх?"
         title="СӨХ, хотхоны ажлыг илүү ил тод, хурдан болгоно"
         description="Бидний тухай, амжилтын түүх, түгээмэл асуулт, хэвлэл мэдээллийн мэдээллийг нэг дор харуулна."
       />
@@ -144,7 +145,7 @@ export function PlatformActionsSection() {
         <InfoCard
           id="sign-up"
           label="Бүртгүүлэх"
-          description="СӨХ, хотхон, менежментийн компани Монсөх ашиглаж эхлэх хүсэлтээ илгээх хэсэг."
+          description="СӨХ, хотхон, менежментийн компани Мон-Сөх ашиглаж эхлэх хүсэлтээ илгээх хэсэг."
         />
       </SimpleGrid>
     </Stack>

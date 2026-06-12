@@ -367,7 +367,7 @@ function MobileMenu({ opened, scrollTo }: { opened: boolean; scrollTo: (id: stri
             </Accordion.Item>
 
             <Accordion.Item value="why">
-              <Accordion.Control>Яагаад Монсөх?</Accordion.Control>
+              <Accordion.Control>Яагаад Мон-Сөх?</Accordion.Control>
               <Accordion.Panel>
                 <Stack gap={6}>
                   {whyItems.map((item) => (
@@ -520,7 +520,7 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
                   Үнийн санал
                 </Button>
 
-                <NavDropdown label="Яагаад Монсөх?" width={420}>
+                <NavDropdown label="Яагаад Мон-Сөх?" width={420}>
                   <Stack gap={6}>
                     {whyItems.map((item) => (
                       <MenuLink
