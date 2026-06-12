@@ -1,6 +1,5 @@
 "use client";
 
-import { Divider, Group, SimpleGrid, Stack, Text } from "@mantine/core";
 import {
   featureGroups,
   resourceItems,
@@ -8,6 +7,7 @@ import {
   solutionItems,
   whyItems,
 } from "@/src/data/monsohNavigation";
+import { Divider, SimpleGrid, Stack, Text } from "@mantine/core";
 import InfoCard from "./InfoCard";
 import SectionHeader from "./SectionHeader";
 
@@ -22,16 +22,23 @@ export function FeatureSections() {
 
       {featureGroups.map((group) => (
         <Stack key={group.id} id={group.id} px={20} gap={22} style={sectionAnchor}>
-          <Group justify="space-between" align="flex-end">
-            <Stack gap={4}>
-              <Text fz={30} fw={800} c="brand">
-                {group.title}
-              </Text>
-              <Text size="sm" style={{ color: "var(--text-secondary)" }}>
-                {group.viewAllLabel}
-              </Text>
-            </Stack>
-          </Group>
+          <Stack gap={8}>
+            <Text
+              size="sm"
+              fw={800}
+              c="brand"
+              style={{
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+              }}
+            >
+              {group.viewAllLabel}
+            </Text>
+
+            <Text fz={30} fw={800} style={{ color: "var(--text-primary)" }}>
+              {group.title}
+            </Text>
+          </Stack>
 
           <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing={18}>
             {group.items.map((item) => (

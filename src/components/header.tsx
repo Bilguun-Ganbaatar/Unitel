@@ -462,8 +462,8 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
           ) : (
             <>
               <Group gap={4} wrap="nowrap">
-                <NavDropdown label="Боломжууд" width={920}>
-                  <SimpleGrid cols={4} spacing={18}>
+                <NavDropdown label="Боломжууд" width={1180}>
+                  <SimpleGrid cols={5} spacing={18} verticalSpacing={18}>
                     {featureGroups.map((group) => (
                       <Stack key={group.title} gap={6}>
                         <Text
@@ -477,6 +477,14 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
                           {group.title}
                         </Text>
 
+                        <MenuLink
+                          label={group.viewAllLabel}
+                          description="Бүгдийг харах"
+                          onClick={() => scrollTo(group.id)}
+                        />
+
+                        <Divider my={4} />
+
                         {group.items.map((item) => (
                           <MenuLink
                             key={item.id}
@@ -485,13 +493,6 @@ export default function Header({ opened, toggle, scrollTo }: HeaderProps) {
                             onClick={() => scrollTo(item.id)}
                           />
                         ))}
-
-                        <Divider my={4} />
-                        <MenuLink
-                          label={group.viewAllLabel}
-                          description="Бүгдийг харах"
-                          onClick={() => scrollTo(group.id)}
-                        />
                       </Stack>
                     ))}
                   </SimpleGrid>

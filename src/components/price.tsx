@@ -97,7 +97,7 @@ export default function Pricing() {
               {...form.getInputProps("phone")}
             />
             <Select
-              placeholder="Дундаж төлбөр"
+              placeholder="Нэг өрхийн дундаж төлбөр"
               radius="md"
               size={isMobile ? "md" : "lg"}
               data={[

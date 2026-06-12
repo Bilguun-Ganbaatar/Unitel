@@ -99,7 +99,7 @@ export default function Introduction() {
             }}
           >
             <Text
-              fz={{ base: 30, sm: 36, md: 48 }}
+              fz={{ base: 25, sm: 33, md: 45 }}
               fw={800}
               style={{
                 lineHeight: 1.12,
@@ -109,11 +109,10 @@ export default function Introduction() {
                   : "0 2px 12px rgba(255,255,255,0.45)",
               }}
             >
-              Таны{" "}
+              {" "}
               <Text component="span" c="brand" inherit>
-                дижитал
+                Технологийн шийдэл, Тогтвортой хөгжил
               </Text>{" "}
-              хөрш
             </Text>
 
             <Text

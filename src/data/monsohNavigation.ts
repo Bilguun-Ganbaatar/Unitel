@@ -7,10 +7,10 @@ export type MenuItem = {
 };
 
 export type FeatureGroup = {
+  viewAllLabel: string;
   title: string;
   id: string;
   items: MenuItem[];
-  viewAllLabel: string;
 };
 
 export const featureGroups: FeatureGroup[] = [
@@ -39,17 +39,18 @@ export const featureGroups: FeatureGroup[] = [
         id: "feature-bank-integrations",
       },
       {
-        label: "Өглөг & нийлүүлэгч",
-        description: "Зөвшөөрөл, төлбөрийг автомат урсгалд оруулах",
-        id: "feature-payables-vendors",
+        label: "Шилэн данс",
+        description: "Оршин суугчдад нээлттэй ил тод систем",
+        id: "feature-transparent-account",
       },
       {
-        label: "Санхүүгийн бүртгэлийн үйлчилгээ",
-        description: "СӨХ-ийн санхүүгийн бүртгэлд мэргэжлийн дэмжлэг",
+        label: "Санхүүгийн тооцоолол болон төсвийн программ",
+        description:
+          "Хүний ажлыг хөнгөвчилж тайлан тооцоо төсвийн нэгтгэлийг хурдан шуурхай гаргана",
         id: "feature-bookkeeping-services",
       },
     ],
-    viewAllLabel: "Санхүүгийн бүх боломж",
+    viewAllLabel: "Санхүүгийн боломж",
   },
   {
     title: "Харилцаа холбоо",
@@ -75,6 +76,16 @@ export const featureGroups: FeatureGroup[] = [
         description: "СӨХ, хотхонд зориулсан танилцуулга вэб хуудас",
         id: "feature-website-builder",
       },
+      {
+        label: "Зөрчил бүртгэл",
+        description: "Дотоод журам, зөрчлийг хялбар бүртгэж хянах",
+        id: "feature-violations",
+      },
+      {
+        label: "Баримт бичгийн сан",
+        description: "Гэрээ, дүрэм, тайлангаа хадгалж хуваалцах",
+        id: "feature-document-storage",
+      },
     ],
     viewAllLabel: "Харилцаа холбооны бүх боломж",
   },
@@ -83,34 +94,24 @@ export const featureGroups: FeatureGroup[] = [
     id: "features-management",
     items: [
       {
-        label: "Зөрчил бүртгэл",
-        description: "Дотоод журам, зөрчлийг хялбар бүртгэж хянах",
-        id: "feature-violations",
+        label: "Зогсоолын менежмент",
+        description: "Өөрийн машин болон зочны машин нээлттэй нэвтрүүлэх",
+        id: "feature-parking",
       },
       {
-        label: "Хүсэлтийн маягт",
-        description: "Засвар, санал, хүсэлтийг inbox-оос салгах",
-        id: "feature-request-forms",
+        label: "Гражын зогсоол түрээслэх",
+        description: "Та өөрийн өмчийн гражын зогсоолыг түрээслэх боломжтой",
+        id: "feature-rent-garage",
       },
       {
-        label: "Баримт бичгийн сан",
-        description: "Гэрээ, дүрэм, тайлангаа хадгалж хуваалцах",
-        id: "feature-document-storage",
+        label: "Конторын төлбөр",
+        description: "Ус дулааны үйлчилгээ үзүүлдэг байгууллагын төлбөр төлөх боломжтой",
+        id: "feature-kontor",
       },
       {
-        label: "Санал асуулга & судалгаа",
-        description: "Цаасгүй санал хураалт, оршин суугчдын судалгаа",
-        id: "feature-voting-surveys",
-      },
-      {
-        label: "Оршин суугчийн портал",
-        description: "Оршин суугч бүрт зориулсан нэг нэгдсэн төв",
-        id: "feature-owner-portals",
-      },
-      {
-        label: "Шилжилтийн баримт",
-        description: "Лавлагаа, өмчлөл шилжилтийн бичиг баримтыг цэгцлэх",
-        id: "feature-resale-documents",
+        label: "Дундын өмч",
+        description: "Оршин суугчдын амьдардаг орчны хариуцлагыг нэмэгдүүлэх",
+        id: "feature-common-property",
       },
     ],
     viewAllLabel: "Удирдлагын бүх боломж",
@@ -136,6 +137,28 @@ export const featureGroups: FeatureGroup[] = [
       },
     ],
     viewAllLabel: "Бүтээгдэхүүний бүх боломж",
+  },
+  {
+    title: "Давуу тал",
+    id: "features-advantages",
+    items: [
+      {
+        label: "Мэргэжлийн байгууллагын үйлчилгээ",
+        description: "",
+        id: "feature-professionals",
+      },
+      {
+        label: "Тоног төхөөрөмж",
+        description: "Хэрэгцээтэй тоног төхөөрөмжүүд",
+        id: "feature-equipments",
+      },
+      {
+        label: "Хямдралтай үйлчиллэгээ",
+        description: "Халмонд трейд ХХК-ийн тоног төхөөрөмжүүд 5-10%-ийн хямдрал эдлэх боломж",
+        id: "feature-discounts",
+      },
+    ],
+    viewAllLabel: "Давуу талын бүх боломж",
   },
 ];
 

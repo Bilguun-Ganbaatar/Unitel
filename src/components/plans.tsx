@@ -101,7 +101,7 @@ export default function Plans() {
           ta={isMobile ? "left" : "center"}
           style={{ color: "var(--text-primary)" }}
         >
-          Таны СӨХ-нд тохирох төлөвлөгөө
+          Таны СӨХ-д тохирох төлөвлөгөө
         </Title>
         <Text
           size="md"
